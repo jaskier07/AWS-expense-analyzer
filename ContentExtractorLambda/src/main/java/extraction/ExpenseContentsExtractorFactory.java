@@ -16,7 +16,8 @@ public class ExpenseContentsExtractorFactory {
         StartIndexOfExpensesPartFinder startIndexFinder = new StartIndexOfExpensesPartFinder();
         EndIndexOfExpensesPartFinder endIndexFinder = new EndIndexOfExpensesPartFinder();
         ExpenseContentRangeFinder rangeFinder = new ExpenseContentRangeFinder(startIndexFinder, endIndexFinder);
-        return new ExpenseContentsExtractorPKOBP(rangeFinder);
+        TextTransformer textTransformer = new TextTransformer();
+        return new ExpenseContentsExtractorPKOBP(rangeFinder, textTransformer);
     }
 }
 

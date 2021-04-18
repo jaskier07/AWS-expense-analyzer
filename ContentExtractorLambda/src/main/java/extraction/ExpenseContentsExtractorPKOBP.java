@@ -5,7 +5,6 @@ import com.lowagie.text.pdf.parser.PdfTextExtractor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import java.util.List;
 class ExpenseContentsExtractorPKOBP implements ExpenseContentsExtractor  {
 
     private final ExpenseContentRangeFinder finder;
+    private final TextTransformer textTransformer;
 
     public List<String> extract(PdfTextExtractor extractor, PdfReader reader) {
         int numberOfPages = reader.getNumberOfPages() + 1;
@@ -24,6 +24,7 @@ class ExpenseContentsExtractorPKOBP implements ExpenseContentsExtractor  {
 
             try {
                 pageContent = extractor.getTextFromPage(pageIndex);
+                pageContent = textTransformer.transformIntoPolishCharacters(pageContent);
                 if (emptyPage(pageContent)) {
                     log.info("Skipping page {} because it is empty", pageIndex);
                     continue;
