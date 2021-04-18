@@ -9,7 +9,7 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
-public class ExpensesParserPKOBP implements ExpensesParser {
+class ExpensesParserPKOBP implements ExpensesParser {
 
     private final ExpensesSeparator expensesSeparator;
 

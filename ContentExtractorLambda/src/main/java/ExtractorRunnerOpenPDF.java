@@ -1,12 +1,14 @@
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.parser.PdfTextExtractor;
-import extraction.ExpenseContentExtractorType;
 import extraction.ExpenseContentsExtractor;
 import extraction.ExpenseContentsExtractorFactory;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import model.BankType;
+import parsing.ExpensesParser;
+import parsing.ExpensesParserFactory;
 
-import java.io.*;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,8 +31,11 @@ public class ExtractorRunnerOpenPDF {
     }
 
     private static void printExpenseContents(PdfTextExtractor textExtractor, PdfReader reader) {
-        ExpenseContentsExtractor extractor = new ExpenseContentsExtractorFactory().get(ExpenseContentExtractorType.PKO_BP);
+        ExpenseContentsExtractor extractor = new ExpenseContentsExtractorFactory().get(BankType.PKO_BP);
         List<String> expenseContents = extractor.extract(textExtractor, reader);
-        expenseContents.forEach(log::info);
+//        expenseContents.forEach(log::info);
+
+        ExpensesParser expensesParser = new ExpensesParserFactory().get(BankType.PKO_BP);
+        expenseContents.forEach(expensesParser::parse);
     }
 }

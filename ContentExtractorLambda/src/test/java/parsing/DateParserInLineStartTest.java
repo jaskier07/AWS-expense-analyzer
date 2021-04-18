@@ -9,20 +9,17 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class DateFinderInTextBeginningTest {
+class DateParserInLineStartTest {
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
     @ParameterizedTest
     @MethodSource(value = "getLineStartingWithDateAndDateToParse")
     void givenLineStartingWithDate_whenParsingDate_thenParseProperDate(String line, LocalDate expectedDate) {
-        Optional<LocalDate> parsedDate = new DateFinderInTextBeginning().find(line);
+        Optional<LocalDate> parsedDate = new DateParserInLineStart().find(line);
         Assertions.assertTrue(parsedDate.isPresent());
         Assertions.assertEquals(expectedDate, parsedDate.get());
     }
@@ -34,7 +31,7 @@ class DateFinderInTextBeginningTest {
     })
     @NullAndEmptySource
     void givenLineNotStartingWithDate_whenParsingDate_returnEmptyOptional(String line) {
-        Optional<LocalDate> parsedDate = new DateFinderInTextBeginning().find(line);
+        Optional<LocalDate> parsedDate = new DateParserInLineStart().find(line);
         Assertions.assertTrue(parsedDate.isEmpty());
     }
 

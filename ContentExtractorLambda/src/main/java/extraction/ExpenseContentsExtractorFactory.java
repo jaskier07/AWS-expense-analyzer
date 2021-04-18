@@ -1,9 +1,11 @@
 package extraction;
 
+import model.BankType;
+
 public class ExpenseContentsExtractorFactory {
 
-    public ExpenseContentsExtractor get(ExpenseContentExtractorType type) {
-        if (type == ExpenseContentExtractorType.PKO_BP) {
+    public ExpenseContentsExtractor get(BankType type) {
+        if (type == BankType.PKO_BP) {
             return getPkoBp();
         } else {
             throw new IllegalArgumentException("Unknown extractor: " + type);
