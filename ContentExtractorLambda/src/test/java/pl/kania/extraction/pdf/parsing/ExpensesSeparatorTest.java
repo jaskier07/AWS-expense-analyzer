@@ -1,14 +1,14 @@
-package parsing;
+package pl.kania.extraction.pdf.parsing;
 
-import pl.kania.extraction.model.OperationType;
+import pl.kania.extraction.pdf.OperationTypePDF;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import pl.kania.pdf.parsing.ExpensesSeparator;
+import pl.kania.extraction.pdf.parsing.ExpensesSeparator;
 import pl.kania.extraction.pdf.parsing.OperationTypeParserInLine;
-import pl.kania.pdf.parsing.SeparatedExpense;
+import pl.kania.extraction.pdf.parsing.SeparatedExpense;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,7 +107,7 @@ class ExpensesSeparatorTest {
 
         for (int i = 0; i < lines.length; i++) {
             if (i % numberOfLines == 0) {
-                expense = new SeparatedExpense(OperationType.OTHER, lines[i]);
+                expense = new SeparatedExpense(OperationTypePDF.OTHER, lines[i]);
                 expenses.add(expense);
             } else {
                 expense.getLines().add(lines[i]);
