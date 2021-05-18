@@ -1,6 +1,6 @@
-package extraction;
+package pl.kania.extraction.pdf.extraction;
 
-import model.BankType;
+import pl.kania.extraction.model.BankType;
 
 public class ExpenseContentsExtractorFactory {
 

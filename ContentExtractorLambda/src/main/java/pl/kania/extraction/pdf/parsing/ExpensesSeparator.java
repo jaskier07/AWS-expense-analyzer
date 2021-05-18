@@ -1,13 +1,11 @@
-package parsing;
+package pl.kania.extraction.pdf.parsing;
 
 import lombok.RequiredArgsConstructor;
-import model.OperationType;
+import pl.kania.extraction.model.OperationType;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 class ExpensesSeparator {

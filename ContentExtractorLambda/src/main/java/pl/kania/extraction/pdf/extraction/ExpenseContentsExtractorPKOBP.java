@@ -1,4 +1,4 @@
-package extraction;
+package pl.kania.extraction.pdf.extraction;
 
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.parser.PdfTextExtractor;

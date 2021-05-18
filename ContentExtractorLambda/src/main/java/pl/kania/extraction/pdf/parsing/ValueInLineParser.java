@@ -1,4 +1,4 @@
-package parsing;
+package pl.kania.extraction.pdf.parsing;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

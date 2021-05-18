@@ -29,3 +29,4 @@ hs_err_pid*
 # files
 /src/main/resources/pdfs/*
 /src/test/resources/pdfs/*
+src/main/resources/*

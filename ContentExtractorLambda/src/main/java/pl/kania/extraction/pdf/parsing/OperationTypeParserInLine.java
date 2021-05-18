@@ -1,10 +1,9 @@
-package parsing;
+package pl.kania.extraction.pdf.parsing;
 
-import model.OperationType;
+import pl.kania.extraction.model.OperationType;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class OperationTypeParserInLine extends ValueInLineParser<OperationType> {

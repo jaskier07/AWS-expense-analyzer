@@ -1,6 +1,6 @@
-package parsing;
+package pl.kania.extraction.pdf.parsing;
 
-import model.ParsedExpense;
+import pl.kania.extraction.model.ParsedExpense;
 
 public class CardPurchaseExpenseParser implements ExpenseParserBasedOnOperationType {
     @Override

@@ -1,14 +1,16 @@
 package parsing;
 
-import model.OperationType;
+import pl.kania.extraction.model.OperationType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import pl.kania.pdf.parsing.ExpensesSeparator;
+import pl.kania.extraction.pdf.parsing.OperationTypeParserInLine;
+import pl.kania.pdf.parsing.SeparatedExpense;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

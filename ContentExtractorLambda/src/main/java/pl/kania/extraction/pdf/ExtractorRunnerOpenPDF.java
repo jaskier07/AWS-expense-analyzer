@@ -1,12 +1,14 @@
+package pl.kania.extraction.pdf;
+
 import com.lowagie.text.pdf.PdfReader;
 import com.lowagie.text.pdf.parser.PdfTextExtractor;
-import extraction.ExpenseContentsExtractor;
-import extraction.ExpenseContentsExtractorFactory;
+import pl.kania.extraction.pdf.extraction.ExpenseContentsExtractor;
+import pl.kania.extraction.pdf.extraction.ExpenseContentsExtractorFactory;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import model.BankType;
-import parsing.ExpensesParser;
-import parsing.ExpensesParserFactory;
+import pl.kania.extraction.model.BankType;
+import pl.kania.extraction.pdf.parsing.ExpensesParser;
+import pl.kania.extraction.pdf.parsing.ExpensesParserFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;

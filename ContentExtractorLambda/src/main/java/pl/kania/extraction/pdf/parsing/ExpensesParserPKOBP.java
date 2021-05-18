@@ -1,8 +1,8 @@
-package parsing;
+package pl.kania.extraction.pdf.parsing;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import model.ParsedExpense;
+import pl.kania.extraction.model.ParsedExpense;
 
 import java.util.List;
 import java.util.Optional;

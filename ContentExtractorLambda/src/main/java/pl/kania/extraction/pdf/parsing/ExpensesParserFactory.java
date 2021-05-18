@@ -1,6 +1,6 @@
-package parsing;
+package pl.kania.extraction.pdf.parsing;
 
-import model.BankType;
+import pl.kania.extraction.model.BankType;
 
 public class ExpensesParserFactory {
 

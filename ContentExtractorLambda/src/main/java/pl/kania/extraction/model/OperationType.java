@@ -1,4 +1,4 @@
-package model;
+package pl.kania.extraction.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

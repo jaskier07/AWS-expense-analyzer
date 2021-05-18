@@ -1,8 +1,8 @@
-package parsing;
+package pl.kania.extraction.pdf.parsing;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
-import model.OperationType;
+import pl.kania.extraction.model.OperationType;
 
 import java.util.ArrayList;
 import java.util.List;

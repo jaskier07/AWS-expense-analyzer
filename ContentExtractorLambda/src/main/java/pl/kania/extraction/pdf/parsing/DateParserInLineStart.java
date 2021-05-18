@@ -1,4 +1,4 @@
-package parsing;
+package pl.kania.extraction.pdf.parsing;
 
 import lombok.extern.slf4j.Slf4j;
 
