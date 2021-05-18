@@ -1,16 +1,16 @@
 package pl.kania.extraction.pdf.parsing;
 
-import pl.kania.extraction.model.OperationType;
+import pl.kania.extraction.pdf.OperationTypePDF;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OperationTypeParserInLine extends ValueInLineParser<OperationType> {
+public class OperationTypeParserInLine extends ValueInLineParser<OperationTypePDF> {
     @Override
-    protected OperationType parseValue(String line) {
+    protected OperationTypePDF parseValue(String line) {
         String formattedLine = line.trim().toUpperCase();
-        List<OperationType> values = Arrays.stream(OperationType.values())
+        List<OperationTypePDF> values = Arrays.stream(OperationTypePDF.values())
                 .filter(l -> Arrays.stream(l.getNames())
                         .anyMatch(formattedLine::contains))
                 .collect(Collectors.toList());

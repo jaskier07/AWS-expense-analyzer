@@ -2,7 +2,7 @@ package pl.kania.extraction.pdf.parsing;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
-import pl.kania.extraction.model.OperationType;
+import pl.kania.extraction.pdf.OperationTypePDF;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,16 +11,16 @@ import java.util.List;
 @AllArgsConstructor
 class SeparatedExpense {
 
-    OperationType operationType;
+    OperationTypePDF operationType;
     List<String> lines;
 
-    public SeparatedExpense(OperationType operationType, String line) {
+    public SeparatedExpense(OperationTypePDF operationType, String line) {
         lines = new ArrayList<>();
         lines.add(line);
         this.operationType = operationType;
     }
 
-    public SeparatedExpense(OperationType operationType) {
+    public SeparatedExpense(OperationTypePDF operationType) {
         lines = new ArrayList<>();
         this.operationType = operationType;
     }

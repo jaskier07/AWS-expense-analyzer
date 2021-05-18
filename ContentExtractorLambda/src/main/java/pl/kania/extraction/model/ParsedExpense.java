@@ -11,7 +11,7 @@ public class ParsedExpense {
     LocalDate operationDate;
     LocalDate currencyDate;
     String operationId;
-    OperationType operationType;
+    TransactionType transactionType;
     Double amount;
     Double balance;
     String description;

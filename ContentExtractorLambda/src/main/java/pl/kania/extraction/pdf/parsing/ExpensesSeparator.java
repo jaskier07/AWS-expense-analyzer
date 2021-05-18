@@ -1,7 +1,7 @@
 package pl.kania.extraction.pdf.parsing;
 
 import lombok.RequiredArgsConstructor;
-import pl.kania.extraction.model.OperationType;
+import pl.kania.extraction.pdf.OperationTypePDF;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ class ExpensesSeparator {
                 continue;
             }
 
-            Optional<OperationType> parsedOperation = operationParser.find(line);
+            Optional<OperationTypePDF> parsedOperation = operationParser.find(line);
             if (parsedOperation.isPresent()) {
                 currentExpense = new SeparatedExpense(parsedOperation.get());
                 expenses.add(currentExpense);
