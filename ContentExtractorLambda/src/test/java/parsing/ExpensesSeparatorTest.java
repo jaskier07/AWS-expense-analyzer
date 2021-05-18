@@ -1,5 +1,6 @@
 package parsing;
 
+import model.OperationType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,21 +27,27 @@ class ExpensesSeparatorTest {
     @MethodSource(value = "getTestDataWithTwoLines")
     void givenTextsWithOneLine_whenSeparating_thenReturnTwoLineExpenses(String text, List<SeparatedExpense> expectedExpenses) {
         List<SeparatedExpense> separatedExpenses = expensesSeparator.separate(text);
-        Assertions.assertEquals(expectedExpenses, separatedExpenses);
+        Assertions.assertEquals(mapToLines(expectedExpenses), mapToLines(separatedExpenses));
     }
 
     @ParameterizedTest
     @MethodSource(value = "getTestDataWithThreeLines")
     void givenTextsWithTwoLines_whenSeparating_thenReturnTwoLineExpenses(String text, List<SeparatedExpense> expectedExpenses) {
         List<SeparatedExpense> separatedExpenses = expensesSeparator.separate(text);
-        Assertions.assertEquals(expectedExpenses, separatedExpenses);
+        Assertions.assertEquals(mapToLines(expectedExpenses), mapToLines(separatedExpenses));
     }
 
     @ParameterizedTest
     @MethodSource(value = "getTestDataWithFourLines")
     void givenTextsWithThreeLines_whenSeparating_thenReturnThreeLineExpenses(String text, List<SeparatedExpense> expectedExpenses) {
         List<SeparatedExpense> separatedExpenses = expensesSeparator.separate(text);
-        Assertions.assertEquals(expectedExpenses, separatedExpenses);
+        Assertions.assertEquals(mapToLines(expectedExpenses), mapToLines(separatedExpenses));
+    }
+
+    private List<List<String>> mapToLines(List<SeparatedExpense> separatedExpenses) {
+        return separatedExpenses.stream()
+                .map(SeparatedExpense::getLines)
+                .collect(Collectors.toList());
     }
 
     private static Stream<Arguments> getTestDataWithTwoLines() {
@@ -98,7 +105,7 @@ class ExpensesSeparatorTest {
 
         for (int i = 0; i < lines.length; i++) {
             if (i % numberOfLines == 0) {
-                expense = new SeparatedExpense(lines[i]);
+                expense = new SeparatedExpense(OperationType.OTHER, lines[i]);
                 expenses.add(expense);
             } else {
                 expense.getLines().add(lines[i]);

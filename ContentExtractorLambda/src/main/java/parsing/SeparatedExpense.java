@@ -2,6 +2,7 @@ package parsing;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
+import model.OperationType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +11,17 @@ import java.util.List;
 @AllArgsConstructor
 class SeparatedExpense {
 
+    OperationType operationType;
     List<String> lines;
 
-    public SeparatedExpense(String line) {
+    public SeparatedExpense(OperationType operationType, String line) {
         lines = new ArrayList<>();
         lines.add(line);
+        this.operationType = operationType;
     }
 
-    public SeparatedExpense() {
+    public SeparatedExpense(OperationType operationType) {
         lines = new ArrayList<>();
+        this.operationType = operationType;
     }
 }
