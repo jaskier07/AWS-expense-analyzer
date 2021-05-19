@@ -39,7 +39,9 @@ class DescriptionParser {
         if (description == null) {
             return EMPTY_DESCRIPTION;
         }
-        return description.replaceAll("Lokalizacja: Adres:", "").trim();
+        description = description.replaceAll("Lokalizacja: Adres:", "");
+        description = description.replaceAll("(http://)|(https://)|(www)", "");
+        return description.trim();
     }
 
     private String extractShop(String description) {
