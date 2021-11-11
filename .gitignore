@@ -27,6 +27,5 @@
 hs_err_pid*
 
 # files
-/src/main/resources/pdfs/*
-/src/test/resources/pdfs/*
-src/main/resources/*
+ContentExtractorLambda/src/test/resources/pdfs/*
+ContentExtractorLambda/src/main/resources/pdfs/*
