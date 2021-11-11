@@ -10,5 +10,6 @@ public enum TransactionType {
     OUTGOING_TRANSFER,
     PURCHASE_CARD,
     PURCHASE_WEB_MOBILE_CODE,
+    WITHDRAWAL,
     OTHER;
 }

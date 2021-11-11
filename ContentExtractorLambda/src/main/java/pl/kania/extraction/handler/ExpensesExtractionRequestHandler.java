@@ -11,6 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.HashSet;
 import java.util.Set;
 
 @Slf4j
@@ -28,7 +29,7 @@ public class ExpensesExtractionRequestHandler implements RequestHandler<Expenses
             return expenses;
         } catch (Exception e) {
             log.error("Error processing extraction request: " + request, e);
-            return null;
+            return new HashSet<>();
         }
     }
 }

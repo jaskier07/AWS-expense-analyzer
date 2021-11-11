@@ -29,8 +29,8 @@ public abstract class ExpensesExtractorCSV {
     protected abstract String[] getHeaderValues();
 
     public Set<ParsedExpense> extract(Reader reader) throws IOException {
-        List<CSVRecord> records = csvFormat.parse(reader).getRecords();
-        return records.stream()
+        return csvFormat.parse(reader).getRecords()
+                .stream()
                 .map(extractor::extract)
                 .collect(Collectors.toSet());
     }

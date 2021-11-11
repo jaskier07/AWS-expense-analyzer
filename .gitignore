@@ -29,3 +29,4 @@ hs_err_pid*
 # files
 ContentExtractorLambda/src/test/resources/pdfs/*
 ContentExtractorLambda/src/main/resources/pdfs/*
+ContentExtractorLambda/src/main/resources/csv/*

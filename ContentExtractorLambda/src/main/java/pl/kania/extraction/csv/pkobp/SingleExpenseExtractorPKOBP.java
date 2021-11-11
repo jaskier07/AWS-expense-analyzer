@@ -19,7 +19,7 @@ public class SingleExpenseExtractorPKOBP implements SingleExpenseExtractor {
 
     @Override
     public ParsedExpense extract(CSVRecord record) {
-        TransactionType transactionType = TransactionTypeCSV_PKOBP.from(record.get("Typ transakcji")).toTransactionType();
+        TransactionType transactionType = TransactionTypeCSV_PKOBP.from(record.get("Typ transakcji")).getTransactionType();
         return ParsedExpense.builder()
                 .operationDate(getDate(record, "Data operacji"))
                 .currencyDate(getDate(record, "Data waluty"))
