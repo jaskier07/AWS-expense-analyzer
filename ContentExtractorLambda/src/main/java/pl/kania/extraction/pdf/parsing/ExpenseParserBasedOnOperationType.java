@@ -2,7 +2,9 @@ package pl.kania.extraction.pdf.parsing;
 
 import pl.kania.extraction.model.ParsedExpense;
 
-interface ExpenseParserBasedOnOperationType {
+import java.util.Optional;
 
-    ParsedExpense parse(SeparatedExpense expense);
+public interface ExpenseParserBasedOnOperationType {
+
+    Optional<ParsedExpense> parse(SeparatedExpense expense);
 }

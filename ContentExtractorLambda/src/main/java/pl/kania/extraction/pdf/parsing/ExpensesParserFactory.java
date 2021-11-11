@@ -8,11 +8,8 @@ public class ExpensesParserFactory {
         if (bank == BankType.PKO_BP) {
             OperationTypeParserInLine operationParser = new OperationTypeParserInLine();
             ExpensesSeparator expensesSeparator = new ExpensesSeparator(operationParser);
-            OutgoingTransferExpenseParser outgoingTransferParser = new OutgoingTransferExpenseParser();
-            MobileCodeExpenseParser mobileCodeParser = new MobileCodeExpenseParser();
-            CardPurchaseExpenseParser cardParser = new CardPurchaseExpenseParser();
 
-            return new ExpensesParserPKOBP(expensesSeparator, outgoingTransferParser, mobileCodeParser, cardParser);
+            return new ExpensesParserPKOBP(expensesSeparator);
         }
         throw new IllegalArgumentException("Unknown bank type: " + bank);
     }

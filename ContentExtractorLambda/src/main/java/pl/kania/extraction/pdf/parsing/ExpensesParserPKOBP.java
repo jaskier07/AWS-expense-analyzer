@@ -13,9 +13,6 @@ import java.util.stream.Collectors;
 class ExpensesParserPKOBP implements ExpensesParser {
 
     private final ExpensesSeparator expensesSeparator;
-    private final OutgoingTransferExpenseParser outgoingTransferParser;
-    private final MobileCodeExpenseParser mobileCodeParser;
-    private final CardPurchaseExpenseParser cardParser;
 
     @Override
     public List<ParsedExpense> parse(String text) {
@@ -23,19 +20,17 @@ class ExpensesParserPKOBP implements ExpensesParser {
 
         return expenses.stream()
                 .map(this::parseExpense)
+                .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toList());
     }
 
     private Optional<ParsedExpense> parseExpense(SeparatedExpense separatedExpense) {
-        switch (separatedExpense.getOperationType()) {
-            case PURCHASE_CARD:
-                return Optional.of(cardParser.parse(separatedExpense));
-            case OUTGOING_TRANSFER:
-                return Optional.of(outgoingTransferParser.parse(separatedExpense));
-            case PURCHASE_WEB_MOBILE_CODE:
-                return Optional.of(mobileCodeParser.parse(separatedExpense));
-        }
-        return Optional.empty();
+         return separatedExpense.getOperationType().getParser()
+                 .parse(separatedExpense)
+                 .or(() -> {
+                    log.warn("Skipping expense due to problem with parsing: " + separatedExpense);
+                    return Optional.empty();
+                 });
     }
 }

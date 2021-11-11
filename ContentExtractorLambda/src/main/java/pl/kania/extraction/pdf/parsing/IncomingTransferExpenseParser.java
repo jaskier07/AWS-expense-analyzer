@@ -4,7 +4,7 @@ import pl.kania.extraction.model.ParsedExpense;
 
 import java.util.Optional;
 
-public class OutgoingTransferExpenseParser implements ExpenseParserBasedOnOperationType {
+public class IncomingTransferExpenseParser implements ExpenseParserBasedOnOperationType {
     @Override
     public Optional<ParsedExpense> parse(SeparatedExpense expense) {
         return Optional.empty();

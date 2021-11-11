@@ -3,21 +3,34 @@ package pl.kania.extraction.pdf;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import pl.kania.extraction.model.TransactionType;
+import pl.kania.extraction.pdf.parsing.*;
 
 @Getter
 @AllArgsConstructor
 public enum OperationTypePDF {
-    INCOMING_TRANSFER(new String[]{"PRZELEW PRZYCHODZĄCY"}),
-    OUTGOING_TRANSFER("PRZELEW WYCHODZĄCY"),
-    PURCHASE_CARD("ZAKUP PRZY UŻYCIU KARTY"),
-    PURCHASE_WEB_MOBILE_CODE("PŁATNOŚĆ WEB - KOD MOBILNY"),
-    OTHER(new String[]{"PRZELEW PRZYCH. SYSTEMAT. WPŁYW", "ZLECENIE NABYCIA JEDNOSTEK TFI"});
+    INCOMING_TRANSFER(
+            new String[]{"PRZELEW PRZYCHODZĄCY", "PRZELEW PRZYCH. SYSTEMAT. WPŁYW", "PRZELEW NA TELEFON PRZYCHODZ. ZEW."},
+            new IncomingTransferExpenseParser()
+    ),
+    OUTGOING_TRANSFER(
+            new String[]{"PRZELEW WYCHODZĄCY", "PRZELEW NA TELEFON WYCHODZĄCY WEW."},
+            new OutgoingTransferExpenseParser()
+    ),
+    PURCHASE_CARD(
+            new String[]{"ZAKUP PRZY UŻYCIU KARTY"},
+            new CardPurchaseExpenseParser()
+    ),
+    PURCHASE_WEB_MOBILE_CODE(
+            new String[]{"PŁATNOŚĆ WEB - KOD MOBILNY", },
+            new MobileCodeExpenseParser()
+    ),
+    OTHER(
+            new String[]{"ZLECENIE NABYCIA JEDNOSTEK TFI"},
+            new OtherExpenseParser()
+    );
 
     private final String[] names;
-
-    OperationTypePDF(String name) {
-        this.names = new String[]{name};
-    }
+    private final ExpenseParserBasedOnOperationType parser;
 
     public TransactionType toTransactionType() {
         switch (this) {
