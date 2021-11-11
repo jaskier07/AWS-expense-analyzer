@@ -11,11 +11,11 @@ import java.util.Arrays;
 @Getter
 @AllArgsConstructor
 public enum TransactionTypeCSV_PKOBP {
-    INCOMING_TRANSFER("Przelew na rachunek"),
+    INCOMING_TRANSFER(new String[] {"Przelew na rachunek", "Przelew na telefon przychodz. zew.", "Zwrot w terminalu", "Zwrot płatności kartą"}),
     OUTGOING_TRANSFER(new String[]{"Przelew z rachunku", "Przelew na telefon wychodzący zew."}),
     PURCHASE_CARD("Płatność kartą"),
-    PURCHASE_WEB_MOBILE_CODE("Płatność web - kod mobilny"),
-    OTHER(new String[]{});
+    PURCHASE_WEB_MOBILE_CODE(new String[]{"Płatność web - kod mobilny", "Zakup w terminalu - kod mobilny"}),
+    OTHER(new String[]{"Przelew Paybynet"});
 
     private final String[] names;
 
