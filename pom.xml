@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>ContentExtractorLambda</module>
+        <module>CsvS3DownloaderLambda</module>
     </modules>
     <properties>
         <maven.compiler.target>11</maven.compiler.target>
