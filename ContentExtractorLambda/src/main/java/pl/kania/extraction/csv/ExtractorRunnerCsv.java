@@ -20,8 +20,8 @@ public class ExtractorRunnerCsv {
 
         try (Reader reader = new FileReader(FILEPATH, CHARSET)){
             ExpensesExtractorCSV extractor = new ExpensesExtractorFactory().get(BankType.PKO_BP);
-            Set<ParsedExpense> expenses = extractor.extract(reader);
-            expenses.forEach(e -> log.info(e.toString()));
+            ParsedExpense[] expenses = extractor.extract(reader);
+            Arrays.stream(expenses).forEach(e -> log.info(e.toString()));
         } catch (Exception e) {
             log.error("Extraction error", e);
         }

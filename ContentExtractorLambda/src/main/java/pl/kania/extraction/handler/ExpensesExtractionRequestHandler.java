@@ -10,36 +10,40 @@ import pl.kania.extraction.csv.ExpensesExtractorFactory;
 import pl.kania.extraction.model.ParsedExpense;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 @Slf4j
-public class ExpensesExtractionRequestHandler implements RequestHandler<InputStream, Set<ParsedExpense>> {
+public class ExpensesExtractionRequestHandler implements RequestHandler<InputStream, ParsedExpense[]> {
     @Override
-    public Set<ParsedExpense> handleRequest(InputStream json, Context context) {
+    public ParsedExpense[] handleRequest(InputStream json, Context context) {
         return getRequest(json)
                 .map(request -> {
                     ExpensesExtractorCSV extractor = new ExpensesExtractorFactory().get(request.getBankType());
+
                     try (
                             InputStream textStream = new ByteArrayInputStream(request.getContent().getBytes());
                             Reader reader = new InputStreamReader(textStream)
                     ) {
-                        Set<ParsedExpense> expenses = extractor.extract(reader);
-                        expenses.forEach(e -> log.debug(e.toString()));
+                        ParsedExpense[] expenses = extractor.extract(reader);
+                        Arrays.stream(expenses).forEach(e -> log.debug(e.toString()));
                         return expenses;
                     } catch (Exception e) {
                         log.error("Error processing extraction request: " + request, e);
-                        return new HashSet<ParsedExpense>();
+                        return null;
                     }
-                }).orElse(new HashSet<>());
+                }).orElseThrow(() -> new IllegalStateException("Error extracting content"));
     }
 
     private Optional<ExpensesExtractionRequest> getRequest(InputStream json) {
         try {
-            return Optional.of(new ObjectMapper().readValue(json, ExpensesExtractionRequest.class));
+            ExpensesExtractionRequest request = new ObjectMapper().readValue(json, ExpensesExtractionRequest.class);
+            log.info("Parsed request: " + request);
+            return Optional.of(request);
         } catch (IOException e) {
-            log.error("Cannot read request");
+            log.error("Cannot read request", e);
             return Optional.empty();
         }
     }
