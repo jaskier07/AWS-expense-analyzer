@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Slf4j
 @AllArgsConstructor
-    public class CsvDownloaderRequestHandler implements RequestHandler<Map<String, String>, byte[]> {
+public class CsvDownloaderRequestHandler implements RequestHandler<Map<String, String>, byte[]> {
 
     private final static String KEY_FILENAME = "filename";
     private final static CsvDownloader csvDownloader = new CsvDownloader();
