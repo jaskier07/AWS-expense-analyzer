@@ -7,13 +7,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import pl.kania.extraction.csv.ExpensesExtractorCSV;
 import pl.kania.extraction.csv.ExpensesExtractorFactory;
+import pl.kania.extraction.model.BankType;
 import pl.kania.extraction.model.ParsedExpense;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 @Slf4j
 public class ExpensesExtractionRequestHandler implements RequestHandler<InputStream, ParsedExpense[]> {
@@ -21,14 +21,14 @@ public class ExpensesExtractionRequestHandler implements RequestHandler<InputStr
     public ParsedExpense[] handleRequest(InputStream json, Context context) {
         return getRequest(json)
                 .map(request -> {
-                    ExpensesExtractorCSV extractor = new ExpensesExtractorFactory().get(request.getBankType());
+                    ExpensesExtractorCSV extractor = new ExpensesExtractorFactory().get(BankType.PKO_BP);
 
                     try (
-                            InputStream textStream = new ByteArrayInputStream(request.getContent().getBytes());
-                            Reader reader = new InputStreamReader(textStream)
+                        InputStream textStream = new ByteArrayInputStream(request.getBytes(StandardCharsets.UTF_8));
+                        Reader reader = new InputStreamReader(textStream)
                     ) {
                         ParsedExpense[] expenses = extractor.extract(reader);
-                        Arrays.stream(expenses).forEach(e -> log.debug(e.toString()));
+                        Arrays.stream(expenses).forEach(e -> log.info(e.toString()));
                         return expenses;
                     } catch (Exception e) {
                         log.error("Error processing extraction request: " + request, e);
@@ -37,13 +37,18 @@ public class ExpensesExtractionRequestHandler implements RequestHandler<InputStr
                 }).orElseThrow(() -> new IllegalStateException("Error extracting content"));
     }
 
-    private Optional<ExpensesExtractionRequest> getRequest(InputStream json) {
+    private Optional<String> getRequest(InputStream json) {
         try {
-            ExpensesExtractionRequest request = new ObjectMapper().readValue(json, ExpensesExtractionRequest.class);
-            log.info("Parsed request: " + request);
-            return Optional.of(request);
+            String request = new String(json.readAllBytes());
+            request = request.replaceAll("\"", "");
+            log.info("Parsed request (base64): " + request);
+
+            String encodedRequest = new String(Base64.getDecoder().decode(request.getBytes()), StandardCharsets.UTF_8);
+            log.info("Parsed request (encoded): " + encodedRequest);
+
+            return Optional.of(encodedRequest);
         } catch (IOException e) {
-            log.error("Cannot read request", e);
+            log.error("Cannot read request: " + json, e);
             return Optional.empty();
         }
     }

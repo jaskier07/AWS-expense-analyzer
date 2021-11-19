@@ -5,16 +5,20 @@ import lombok.extern.slf4j.Slf4j;
 import pl.kania.orchestrator.model.BankType;
 import pl.kania.orchestrator.model.ExpensesExtractionRequest;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 @Slf4j
 @AllArgsConstructor
-public class ContentExtractor extends LambdaInvoker<ExpensesExtractionRequest> {
+public class ContentExtractor extends LambdaInvoker<String> {
 
-    public Void extractContent(byte[] file) {
-        String content = new String(file);
-        ExpensesExtractionRequest request = new ExpensesExtractionRequest(BankType.PKO_BP, content);
-        invoke(request);
+    public Void extractContent(String content) {
+        log.info("Extracting content...");
+
+        invoke(content).ifPresent(bytes -> log.info(new String(bytes, StandardCharsets.UTF_8)));
+        log.info("Extracting finished");
+
         return null;
     }
 
@@ -24,18 +28,18 @@ public class ContentExtractor extends LambdaInvoker<ExpensesExtractionRequest> {
     }
 
     @Override
-    protected Optional<byte[]> handleInvocationError(ExpensesExtractionRequest requestBody, Throwable throwable) {
+    protected Optional<byte[]> handleInvocationError(String requestBody, Throwable throwable) {
         log.error("Error extracting content from file. Request body: " + requestBody, throwable);
         return Optional.empty();
     }
 
     @Override
-    protected String getNonOkErrorMessage(ExpensesExtractionRequest requestBody, int statusCode) {
+    protected String getNonOkErrorMessage(String requestBody, int statusCode) {
         return "Problem with extracting file's content - received non-OK status code: " + statusCode + ". Request: " + requestBody;
     }
 
     @Override
-    protected String getPayload(ExpensesExtractionRequest requestBody) throws Exception {
-        return getObjectMapper().writeValueAsString(requestBody);
+    protected String getPayload(String requestBody) throws Exception {
+        return requestBody;
     }
 }

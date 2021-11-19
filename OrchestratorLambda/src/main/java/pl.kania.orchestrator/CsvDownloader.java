@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import pl.kania.orchestrator.handler.OrchestratorRequestHandler;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Optional;
 
@@ -36,7 +37,11 @@ public class CsvDownloader extends LambdaInvoker<String> {
         return getObjectMapper().writeValueAsString(map);
     }
 
-    public Optional<byte[]> download(String filename) {
-        return invoke(filename);
+    public Optional<String> download(String filename) {
+        return invoke(filename).map(bytes -> {
+            String content = new String(bytes);
+            log.info("Downloaded file: " + content);
+            return content;
+        });
     }
 }

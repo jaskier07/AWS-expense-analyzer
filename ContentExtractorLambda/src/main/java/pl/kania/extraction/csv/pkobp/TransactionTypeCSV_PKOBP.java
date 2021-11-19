@@ -1,14 +1,11 @@
 package pl.kania.extraction.csv.pkobp;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import pl.kania.extraction.model.TransactionType;
+import pl.kania.extraction.util.TextEncodingMapper;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Getter
@@ -55,10 +52,7 @@ public enum TransactionTypeCSV_PKOBP {
 
     private String[] mapToWindows1250(String[] names) {
         return Arrays.stream(names)
-                .map(name -> {
-                    byte[] bytes = name.getBytes(Charset.forName("Windows-1250"));
-                    return new String(bytes, StandardCharsets.UTF_8);
-                })
+                .map(name ->  new TextEncodingMapper().mapToWindows1250(name))
                 .toArray(String[]::new);
     }
 }

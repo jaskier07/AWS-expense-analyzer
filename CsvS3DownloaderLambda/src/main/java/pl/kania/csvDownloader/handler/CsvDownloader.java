@@ -12,8 +12,11 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.Base64;
 import java.util.Optional;
 
 @Slf4j
@@ -30,13 +33,18 @@ public class CsvDownloader {
                 .build();
     }
 
-    Optional<byte[]> download(String filename) {
+    Optional<String> download(String filename) {
         try (
                 S3Object object = s3Client.getObject(BUCKET_NAME, filename);
                 S3ObjectInputStream contentStream = object.getObjectContent()
         ) {
+            byte[] contentBytes = IOUtils.toByteArray(contentStream);
             log.info("Downloaded object {} from S3", filename);
-            return Optional.of(IOUtils.toByteArray(contentStream));
+
+            String contentString = new String(contentBytes, Charset.forName("Windows-1250"));
+            log.debug(contentString);
+
+            return Optional.of(contentString);
         } catch (Exception e) {
             log.error("Error downloading object " + filename + " from S3", e);
             return Optional.empty();

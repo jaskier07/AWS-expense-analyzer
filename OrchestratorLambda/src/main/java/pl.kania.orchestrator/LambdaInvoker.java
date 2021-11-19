@@ -10,6 +10,8 @@ import io.vavr.control.Try;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Optional;
 
@@ -44,12 +46,11 @@ public abstract class LambdaInvoker<T> {
             InvokeResult result = lambdaClient.invoke(request);
 
             if (result.getStatusCode().equals(STATUS_OK)) {
-                byte[] payloadBase64 = result.getPayload().array();
+                byte[] resultBytes = result.getPayload().array();
 
-                log.info(new String(payloadBase64));
+                log.info("Invocation result: " + new String(resultBytes, StandardCharsets.UTF_8));
 
-                byte[] decodedPayload = decoder.decode(payloadBase64);
-                return Optional.of(decodedPayload);
+                return Optional.of(resultBytes);
             }
 
             log.error(getNonOkErrorMessage(requestBody, result.getStatusCode()));
