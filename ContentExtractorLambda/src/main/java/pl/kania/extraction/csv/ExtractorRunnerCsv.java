@@ -7,8 +7,7 @@ import pl.kania.extraction.model.ParsedExpense;
 import java.io.FileReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.Set;
+import java.util.Arrays;
 
 @Slf4j
 public class ExtractorRunnerCsv {

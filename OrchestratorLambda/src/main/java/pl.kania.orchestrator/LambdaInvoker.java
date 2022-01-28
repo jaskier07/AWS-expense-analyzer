@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.vavr.control.Try;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import pl.kania.orchestrator.util.ObjectMapperProvider;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -20,7 +21,6 @@ public abstract class LambdaInvoker<T> {
 
     private static final int STATUS_OK = 200;
     private final AWSLambda lambdaClient;
-    private final Base64.Decoder decoder;
     @Getter
     private final ObjectMapper objectMapper;
 
@@ -28,8 +28,7 @@ public abstract class LambdaInvoker<T> {
         this.lambdaClient = AWSLambdaClientBuilder.standard()
                 .withRegion(Regions.EU_CENTRAL_1)
                 .build();
-        this.decoder = Base64.getDecoder();
-        this.objectMapper = new ObjectMapper();
+        this.objectMapper = new ObjectMapperProvider().get();
     }
 
     protected abstract String getLambdaName();
@@ -44,20 +43,19 @@ public abstract class LambdaInvoker<T> {
         return Try.<Optional<byte[]>>of(() -> {
             InvokeRequest request = getInvokeRequest(requestBody);
             InvokeResult result = lambdaClient.invoke(request);
+            log.info("InvokeResult: " + result);
 
             if (result.getStatusCode().equals(STATUS_OK)) {
                 byte[] resultBytes = result.getPayload().array();
 
-                log.info("Invocation result: " + new String(resultBytes, StandardCharsets.UTF_8));
+                log.info("Returned value: " + new String(resultBytes, StandardCharsets.UTF_8));
 
                 return Optional.of(resultBytes);
             }
 
             log.error(getNonOkErrorMessage(requestBody, result.getStatusCode()));
             return Optional.empty();
-        }).recover(e -> {
-            return handleInvocationError(requestBody, e);
-        }).get();
+        }).recover(e -> handleInvocationError(requestBody, e)).get();
     }
 
     private InvokeRequest getInvokeRequest(T requestBody) throws Exception {

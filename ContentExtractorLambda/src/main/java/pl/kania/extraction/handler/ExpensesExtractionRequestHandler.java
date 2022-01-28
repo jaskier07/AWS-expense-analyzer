@@ -9,6 +9,7 @@ import pl.kania.extraction.csv.ExpensesExtractorCSV;
 import pl.kania.extraction.csv.ExpensesExtractorFactory;
 import pl.kania.extraction.model.BankType;
 import pl.kania.extraction.model.ParsedExpense;
+import pl.kania.extraction.util.ObjectMapperProvider;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -16,10 +17,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Slf4j
-public class ExpensesExtractionRequestHandler implements RequestHandler<InputStream, ParsedExpense[]> {
+public class ExpensesExtractionRequestHandler implements RequestHandler<String, String> {
+
+    private final ObjectMapper objectMapperProvider = new ObjectMapperProvider().get();
+
     @Override
-    public ParsedExpense[] handleRequest(InputStream json, Context context) {
-        return getRequest(json)
+    public String handleRequest(String json, Context context) {
+        return getRequest(new ByteArrayInputStream(json.getBytes()))
                 .map(request -> {
                     ExpensesExtractorCSV extractor = new ExpensesExtractorFactory().get(BankType.PKO_BP);
 
@@ -29,7 +33,7 @@ public class ExpensesExtractionRequestHandler implements RequestHandler<InputStr
                     ) {
                         ParsedExpense[] expenses = extractor.extract(reader);
                         Arrays.stream(expenses).forEach(e -> log.info(e.toString()));
-                        return expenses;
+                        return objectMapperProvider.writeValueAsString(expenses);
                     } catch (Exception e) {
                         log.error("Error processing extraction request: " + request, e);
                         return null;

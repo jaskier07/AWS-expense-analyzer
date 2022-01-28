@@ -27,6 +27,7 @@ class DescriptionParser {
                 return extractReceiverName(description);
             case INCOMING_TRANSFER:
                 description = record.get(CONTEXT_INDEX_LINE_0);
+                description +=  " ; " + record.get(CONTEXT_INDEX_LINE_2);
                 return extractSender(description);
             default:
                 log.warn("Unknown transaction type {}, extracting whole description", transactionType);
