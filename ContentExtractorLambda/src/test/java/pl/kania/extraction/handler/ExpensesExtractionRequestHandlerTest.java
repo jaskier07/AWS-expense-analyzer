@@ -3,16 +3,13 @@ package pl.kania.extraction.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pl.kania.extraction.model.BankType;
-import pl.kania.extraction.model.ParsedExpense;
-import pl.kania.extraction.model.TransactionType;
+import pl.kania.dto.BankType;
+import pl.kania.dto.ParsedExpense;
+import pl.kania.dto.TransactionType;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.HashSet;
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ExpensesExtractionRequestHandlerTest {
 

@@ -2,7 +2,7 @@ package pl.kania.extraction.csv.pkobp;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import pl.kania.extraction.model.TransactionType;
+import pl.kania.dto.TransactionType;
 import pl.kania.extraction.util.TextEncodingMapper;
 
 import java.util.Arrays;

@@ -1,8 +1,8 @@
 package pl.kania.extraction.csv;
 
 import lombok.extern.slf4j.Slf4j;
-import pl.kania.extraction.model.BankType;
-import pl.kania.extraction.model.ParsedExpense;
+import pl.kania.dto.BankType;
+import pl.kania.dto.ParsedExpense;
 
 import java.io.FileReader;
 import java.io.Reader;

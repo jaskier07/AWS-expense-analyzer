@@ -2,17 +2,15 @@ package pl.kania.extraction.handler;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import pl.kania.extraction.csv.ExpensesExtractorCSV;
 import pl.kania.extraction.csv.ExpensesExtractorFactory;
-import pl.kania.extraction.model.BankType;
-import pl.kania.extraction.model.ParsedExpense;
+import pl.kania.dto.BankType;
+import pl.kania.dto.ParsedExpense;
 import pl.kania.extraction.util.ObjectMapperProvider;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 

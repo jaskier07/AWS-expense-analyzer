@@ -2,10 +2,6 @@ package pl.kania.orchestrator;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import pl.kania.orchestrator.model.BankType;
-import pl.kania.orchestrator.model.ExpensesExtractionRequest;
-
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package pl.kania.orchestrator.model;
+package pl.kania.dto;
 
 public enum BankType {
     PKO_BP

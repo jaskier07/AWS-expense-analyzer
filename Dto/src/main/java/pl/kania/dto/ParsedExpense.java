@@ -1,4 +1,4 @@
-package pl.kania.extraction.model;
+package pl.kania.dto;
 
 import lombok.Builder;
 import lombok.Value;

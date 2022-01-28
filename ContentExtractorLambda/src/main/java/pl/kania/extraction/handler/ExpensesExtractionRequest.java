@@ -1,10 +1,9 @@
 package pl.kania.extraction.handler;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Value;
-import pl.kania.extraction.model.BankType;
+import pl.kania.dto.BankType;
 
 @Value
 @AllArgsConstructor

@@ -2,9 +2,9 @@ package pl.kania.extraction.csv.pkobp;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVRecord;
+import pl.kania.dto.ParsedExpense;
 import pl.kania.extraction.csv.SingleExpenseExtractor;
-import pl.kania.extraction.model.ParsedExpense;
-import pl.kania.extraction.model.TransactionType;
+import pl.kania.dto.TransactionType;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

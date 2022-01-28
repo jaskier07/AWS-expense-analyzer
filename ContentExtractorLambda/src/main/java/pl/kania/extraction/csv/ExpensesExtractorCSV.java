@@ -2,15 +2,10 @@ package pl.kania.extraction.csv;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
-import pl.kania.extraction.model.ParsedExpense;
+import pl.kania.dto.ParsedExpense;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Base64;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Slf4j
 public abstract class ExpensesExtractorCSV {
