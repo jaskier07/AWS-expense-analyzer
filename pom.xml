@@ -13,7 +13,7 @@
         <module>CsvS3DownloaderLambda</module>
         <module>OrchestratorLambda</module>
         <module>ExpensesGroupingLambda</module>
-        <module>Dto</module>
+        <module>Commons</module>
     </modules>
     <properties>
         <maven.compiler.target>11</maven.compiler.target>

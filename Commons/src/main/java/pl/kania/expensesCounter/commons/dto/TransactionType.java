@@ -1,4 +1,4 @@
-package pl.kania.expensesCounter.dto;
+package pl.kania.expensesCounter.commons.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

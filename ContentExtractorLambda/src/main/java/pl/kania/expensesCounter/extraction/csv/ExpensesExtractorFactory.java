@@ -1,7 +1,7 @@
 package pl.kania.expensesCounter.extraction.csv;
 
 import pl.kania.expensesCounter.extraction.csv.pkobp.ExpensesExtractorPKOBP;
-import pl.kania.expensesCounter.dto.BankType;
+import pl.kania.expensesCounter.commons.dto.BankType;
 
 public class ExpensesExtractorFactory {
 

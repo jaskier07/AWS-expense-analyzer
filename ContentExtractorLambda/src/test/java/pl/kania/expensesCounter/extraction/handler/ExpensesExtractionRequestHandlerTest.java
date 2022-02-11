@@ -3,9 +3,9 @@ package pl.kania.expensesCounter.extraction.handler;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pl.kania.expensesCounter.dto.BankType;
-import pl.kania.expensesCounter.dto.ParsedExpense;
-import pl.kania.expensesCounter.dto.TransactionType;
+import pl.kania.expensesCounter.commons.dto.BankType;
+import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
+import pl.kania.expensesCounter.commons.dto.TransactionType;
 
 import java.time.LocalDate;
 import java.time.Month;

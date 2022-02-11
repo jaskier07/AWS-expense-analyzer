@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.vavr.control.Try;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import pl.kania.expensesCounter.orchestrator.util.ObjectMapperProvider;
+import pl.kania.expensesCounter.commons.util.ObjectMapperProvider;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -58,8 +58,13 @@ public abstract class LambdaInvoker<T> {
 
     private InvokeRequest getInvokeRequest(T requestBody) throws Exception {
         InvokeRequest request = new InvokeRequest();
-        request.setFunctionName(getLambdaName());
-        request.setPayload(getPayload(requestBody));
+        String lambdaName = getLambdaName();
+        String payload = getPayload(requestBody);
+
+        request.setFunctionName(lambdaName);
+        request.setPayload(payload);
+
+        log.info("Invoking lambda " + lambdaName + " with payload " + payload);
         return request;
     }
 

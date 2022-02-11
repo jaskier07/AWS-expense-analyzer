@@ -2,7 +2,7 @@ package pl.kania.expensesCounter.extraction.csv.pkobp;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import pl.kania.expensesCounter.dto.TransactionType;
+import pl.kania.expensesCounter.commons.dto.TransactionType;
 import pl.kania.expensesCounter.extraction.util.TextEncodingMapper;
 
 import java.util.Arrays;

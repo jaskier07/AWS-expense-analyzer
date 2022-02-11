@@ -2,10 +2,12 @@ package pl.kania.expensesCounter.extraction.csv;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
-import pl.kania.expensesCounter.dto.ParsedExpense;
+import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public abstract class ExpensesExtractorCSV {
@@ -26,12 +28,12 @@ public abstract class ExpensesExtractorCSV {
 
     protected abstract String[] getHeaderValues();
 
-    public ParsedExpense[] extract(Reader reader) throws IOException {
+    public List<ParsedExpense> extract(Reader reader) throws IOException {
         log.info("Extracting started...");
 
         return csvFormat.parse(reader).getRecords()
                 .stream()
                 .map(extractor::extract)
-                .toArray(ParsedExpense[]::new);
+                .collect(Collectors.toList());
     }
 }

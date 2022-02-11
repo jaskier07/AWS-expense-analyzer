@@ -3,7 +3,7 @@ package pl.kania.expensesCounter.orchestrator.model;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Value;
-import pl.kania.expensesCounter.dto.BankType;
+import pl.kania.expensesCounter.commons.dto.BankType;
 
 @Value
 @AllArgsConstructor
