@@ -11,5 +11,9 @@ public enum TransactionType {
     PURCHASE_CARD,
     PURCHASE_WEB_MOBILE_CODE,
     WITHDRAWAL,
-    OTHER
+    OTHER;
+
+    public boolean isExpense() {
+        return this != INCOMING_TRANSFER;
+    }
 }
