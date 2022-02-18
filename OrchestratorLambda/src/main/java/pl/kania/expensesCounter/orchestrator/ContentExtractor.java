@@ -33,6 +33,7 @@ public class ContentExtractor extends LambdaInvoker<String> {
     public List<ParsedExpense> extractContent(String content) {
         log.info("Extracting content...");
         log.info(content);
+
         return invoke(content)
                 .map(bytes -> new String(bytes, StandardCharsets.UTF_8))
                 .map(str -> requestReader.readStringBase64Encoded(str)
@@ -42,13 +43,6 @@ public class ContentExtractor extends LambdaInvoker<String> {
                         .map(ContentExtractionResult::getExpenses)
                         .getOrElse(EMPTY_RESULT)
                 ).orElse(EMPTY_RESULT);
-    }
-
-    public static void main(String[] args) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapperProvider().get();
-        System.out.println(objectMapper.readValue(
-                "{\n    \"expenses\": [\n        {\n            \"operationDate\": [\n                2021,\n                11,\n                10\n            ],\n            \"currencyDate\": [\n                2021,\n                11,\n                8\n            ],\n            \"operationId\": null,\n            \"transactionType\": \"PURCHASE_CARD\",\n            \"amount\": -15.21,\n            \"balance\": 162486.12,\n            \"description\": \"JMP S.A. BIEDRONKA 420\"\n        },\n        {\n            \"operationDate\": [\n                2021,\n                11,\n                10\n            ],\n            \"currencyDate\": [\n                2021,\n                11,\n                8\n            ],\n            \"operationId\": null,\n            \"transactionType\": \"PURCHASE_CARD\",\n            \"amount\": -15.2,\n            \"balance\": 162501.33,\n            \"description\": \"KONKOL SKLEP 236\"\n        },\n        {\n            \"operationDate\": [\n                2021,\n                11,\n                10\n            ],\n            \"currencyDate\": [\n                2021,\n                11,\n                10\n            ],\n            \"operationId\": null,\n            \"transactionType\": \"INCOMING_TRANSFER\",\n            \"amount\": 13060.53,\n            \"balance\": 162516.53,\n            \"description\": \"IHS GLOBAL SP. Z O.O. UL. MARYNARKI POLSKIEJ 163 ; Tytu³: ¥êŒæ¿Ÿó³ WYNAGRODZENIE ZA PAZDZIERNIK 2021\"\n        }\n    ]\n}"
-                , ContentExtractionResult.class));
     }
 
     private ContentExtractionResult handleValueReadingException(Throwable exception) {
