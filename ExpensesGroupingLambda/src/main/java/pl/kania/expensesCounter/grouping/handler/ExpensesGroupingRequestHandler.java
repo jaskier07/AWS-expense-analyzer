@@ -15,7 +15,7 @@ import pl.kania.expensesCounter.commons.util.Base64RequestReader;
 import pl.kania.expensesCounter.commons.util.ObjectMapperProvider;
 import pl.kania.expensesCounter.commons.util.RequestHelper;
 import pl.kania.expensesCounter.grouping.ParsedExpensesGrouper;
-import pl.kania.expensesCounter.grouping.model.ExpenseMapping;
+import pl.kania.expensesCounter.commons.dto.db.ExpenseMapping;
 import pl.kania.expensesCounter.grouping.purchase.PurchaseProcessorFacade;
 
 import java.util.Arrays;

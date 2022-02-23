@@ -1,8 +1,6 @@
 package pl.kania.expensesCounter.grouping.search;
 
-import pl.kania.expensesCounter.grouping.model.ExpenseMapping;
-
-import java.util.List;
+import pl.kania.expensesCounter.commons.dto.db.ExpenseMapping;
 
 public abstract class ExpenseMappingsSearch<SEARCH_PARAM_TYPE> {
 

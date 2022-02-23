@@ -1,11 +1,10 @@
 package pl.kania.expensesCounter.grouping.purchase;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import pl.kania.expensesCounter.commons.dto.TransactionType;
 import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
-import pl.kania.expensesCounter.grouping.model.ExpenseMapping;
+import pl.kania.expensesCounter.commons.dto.db.ExpenseMapping;
 import pl.kania.expensesCounter.grouping.purchase.card.CardPurchaseProcessor;
 import pl.kania.expensesCounter.grouping.search.ExpenseMappingsCardSearch;
 

@@ -14,6 +14,7 @@
         <module>OrchestratorLambda</module>
         <module>ExpensesGroupingLambda</module>
         <module>Commons</module>
+        <module>ExpenseMappingsCsvInserter</module>
     </modules>
     <properties>
         <maven.compiler.target>11</maven.compiler.target>

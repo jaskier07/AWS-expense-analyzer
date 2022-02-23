@@ -7,7 +7,7 @@ import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
 import com.amazonaws.services.dynamodbv2.model.GetItemResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import pl.kania.expensesCounter.grouping.model.ExpenseMapping;
+import pl.kania.expensesCounter.commons.dto.db.ExpenseMapping;
 
 import java.util.*;
 
@@ -90,7 +90,7 @@ public class ExpenseMappingsCardSearch extends ExpenseMappingsSearch<List<String
                 .map((map) -> {
                     Set<String> keys = map.keySet();
                     log.info(keys.toString());
-                    return new ExpenseMapping(null, null, null, null);
+                    return new ExpenseMapping(null, null, null, null, null);
                 })
                 .orElseThrow();
     }
