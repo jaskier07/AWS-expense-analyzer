@@ -7,6 +7,10 @@ import pl.kania.expensesCounter.grouping.model.ExpenseMapping;
 import pl.kania.expensesCounter.grouping.search.ExpenseMappingsSearch;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static java.lang.String.format;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -15,14 +19,21 @@ public abstract class AbstractPurchaseProcessor<SEARCH_PARAM_TYPE> {
     private final ExpenseMappingsSearch<SEARCH_PARAM_TYPE> expenseMappingsSearch;
 
     public List<ExpenseMapping> process(List<ParsedExpense> expenses) {
-        SEARCH_PARAM_TYPE searchParameters = transformForSearch(expenses);
-        log.info("Card search parameters: " + searchParameters.toString());
+        Map<ParsedExpense, SEARCH_PARAM_TYPE> searchParametersPerExpense = transformForSearch(expenses);
+        log.info("Card search parameters: " + searchParametersPerExpense.toString());
 
-        List<ExpenseMapping> expenseMappings = expenseMappingsSearch.search(searchParameters);
-        log.info("Found card expense mappings: " + expenseMappings);
+        return searchParametersPerExpense.entrySet()
+                .stream()
+                .map(entry -> {
+                    log.info(format("Searching for mappings with keywords %s for %s", entry.getValue(), entry.getKey()));
 
-        return expenseMappings;
+                    ExpenseMapping expenseMapping = expenseMappingsSearch.search(entry.getValue());
+                    log.info("Found card expense mapping: " + expenseMapping);
+
+                    return expenseMapping;
+                })
+                .collect(Collectors.toList());
     }
 
-    protected abstract SEARCH_PARAM_TYPE transformForSearch(List<ParsedExpense> expenses);
+    protected abstract Map<ParsedExpense, SEARCH_PARAM_TYPE> transformForSearch(List<ParsedExpense> expenses);
 }
