@@ -13,13 +13,16 @@ import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
 import java.io.CharArrayReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.util.Arrays.asList;
 
 @Slf4j
 public class ExpenseMappingsCsvParser {
 
-    private static final String HEADER = "";
+    private static final String[] HEADER = new String[]{"name","mapping_type","expense_type","subcategory","logical_name"};
     private static final String DELIMITER = ",";
     private static final boolean ALLOW_MISSING_COLUMN_NAMES = true;
     private final CSVFormat csvFormat;
