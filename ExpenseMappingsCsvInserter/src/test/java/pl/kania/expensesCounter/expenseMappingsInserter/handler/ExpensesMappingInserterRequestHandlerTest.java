@@ -35,8 +35,29 @@ class ExpensesMappingInserterRequestHandlerTest {
         });
     }
 
+    @Test
+    void shouldProcessWithoutExceptionBase64() {
+        // given
+        String input = getInput();
+        Context lambdaContext = mock(Context.class);
+
+        ExpenseMappingDao dao = mock(ExpenseMappingDao.class);
+        when(dao.saveMappings(anyList())).thenReturn(1);
+
+        ExpensesMappingInserterRequestHandler handler = new ExpensesMappingInserterRequestHandler(
+                new Base64RequestReader(),
+                dao,
+                new ExpenseMappingsCsvParser()
+        );
+
+        // when & then
+        assertDoesNotThrow(() -> {
+            handler.handleRequest(input, lambdaContext);
+        });
+    }
+
     private String getInput() {
-        return "biedronka,keyword,food,discount,biedronka";
+        return "base64;bmFtZSxtYXBwaW5nX3R5cGUsZXhwZW5zZV90eXBlLHN1YmNhdGVnb3J5LGxvZ2ljYWxfbmFtZQpiaWVkcm9ua2Esa2V5d29yZCxmb29kLGRpc2NvdW50LGJpZWRyb25rYQ==";
     }
 
 

@@ -1,5 +1,7 @@
 package pl.kania.expensesCounter.commons.dto.db;
 
+import lombok.ToString;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Optional;
@@ -18,5 +20,10 @@ public enum MappingType {
                         .orElseThrow(() -> new IllegalArgumentException("Unknown mapping type: " + value))
                 )
                 .orElseThrow();
+    }
+
+    @Override
+    public String toString() {
+        return name().toLowerCase();
     }
 }

@@ -53,14 +53,13 @@ public class ExpensesMappingInserterRequestHandler implements RequestHandler<Str
             value = value.substring(BASE_64_PREFIX.length());
             value = requestReader.readStringBase64Encoded(value).orElseThrow();
         }
+        log.info(value);
         return value;
     }
 
     private List<ExpenseMapping> readMappings(String value) {
         try (CharArrayReader reader = new CharArrayReader(value.toCharArray())) {
-            List<ExpenseMapping> mappings = csvParser.parseCsv(reader);
-            log.info("Mappings: {}", mappings);
-            return mappings;
+            return csvParser.parseCsv(reader);
         }
     }
 }

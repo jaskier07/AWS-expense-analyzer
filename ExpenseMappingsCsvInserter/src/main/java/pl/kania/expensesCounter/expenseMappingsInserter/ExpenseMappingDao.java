@@ -34,15 +34,15 @@ public class ExpenseMappingDao {
                 .collect(toList()))
                 .map(this::mapWriteRequestToParameterMap)
                 .map(BatchWriteItemRequest::new)
-                .map(request -> saveMappings(expenseMappings, request))
+                .map(request -> saveMappings(request, expenseMappings.size()))
                 .orElseThrow();
     }
 
-    private int saveMappings(List<ExpenseMapping> expenseMappings, BatchWriteItemRequest request) {
+    private int saveMappings(BatchWriteItemRequest request, int mappingsSize) {
         log.info(request.toString());
         BatchWriteItemResult result = dynamoDB.batchWriteItem(request);
         log.info(result.toString());
-        return expenseMappings.size();
+        return mappingsSize;
     }
 
     Map<String, List<WriteRequest>> mapWriteRequestToParameterMap(List<WriteRequest> writeRequests) {
@@ -54,7 +54,7 @@ public class ExpenseMappingDao {
     private Map<String, AttributeValue> mapExpenseToParameterMap(ExpenseMapping mapping) {
         Map<String, AttributeValue> parameterMap = new HashMap<>();
         parameterMap.put("name", new AttributeValue(mapping.getName()));
-        parameterMap.put("mapping_type", new AttributeValue(mapping.getMappingTypeString()));
+        parameterMap.put("mapping_type", new AttributeValue(mapping.getMappingType()));
         parameterMap.put("expense_type", new AttributeValue(mapping.getExpenseType()));
         parameterMap.put("logical_name", new AttributeValue(mapping.getLogicalName()));
         parameterMap.put("subcategory", new AttributeValue(mapping.getExpenseTypeSubcategory()));
