@@ -42,7 +42,7 @@ public class ExpensesGroupingRequestHandler implements RequestHandler<String, St
 
         Map<TransactionType, List<ParsedExpense>> expensesPerTransactionType = expensesGrouper.groupByExpenseTypes(parsedExpenses.getExpenses());
         log.info(expensesPerTransactionType.toString());
-        List<ExpenseMapping> mappings = purchaseProcessorFacade.process(expensesPerTransactionType);
+        List<GroupingResultPerExpenseType> mappings = purchaseProcessorFacade.process(expensesPerTransactionType);
         log.info(mappings.toString());
 
         ExpenseGroupingResult results = getStub();

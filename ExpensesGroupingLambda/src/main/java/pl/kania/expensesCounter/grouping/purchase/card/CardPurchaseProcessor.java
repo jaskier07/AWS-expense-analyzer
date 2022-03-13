@@ -5,10 +5,7 @@ import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
 import pl.kania.expensesCounter.grouping.purchase.AbstractPurchaseProcessor;
 import pl.kania.expensesCounter.grouping.search.ExpenseMappingsSearch;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
@@ -30,6 +27,6 @@ public class CardPurchaseProcessor extends AbstractPurchaseProcessor<List<String
     }
 
     private List<String> splitKeywords(ParsedExpense expense) {
-        return asList(expense.getDescription().split(" "));
+        return asList(expense.getDescription().split(" \\/"));
     }
 }

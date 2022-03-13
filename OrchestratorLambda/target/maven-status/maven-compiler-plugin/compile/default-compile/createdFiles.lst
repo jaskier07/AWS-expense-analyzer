@@ -1,0 +1,6 @@
+pl\kania\expensesCounter\orchestrator\LambdaInvoker.class
+pl\kania\expensesCounter\orchestrator\ExpensesGrouper.class
+pl\kania\expensesCounter\orchestrator\handler\OrchestratorRequestHandler.class
+pl\kania\expensesCounter\orchestrator\ContentExtractor.class
+pl\kania\expensesCounter\orchestrator\model\ExpensesExtractionRequest.class
+pl\kania\expensesCounter\orchestrator\CsvDownloader.class

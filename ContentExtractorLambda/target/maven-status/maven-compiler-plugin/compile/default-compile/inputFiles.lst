@@ -1,0 +1,11 @@
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\csv\ExpensesExtractorCSV.java
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\csv\pkobp\ExpensesExtractorPKOBP.java
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\csv\ExpensesExtractorFactory.java
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\handler\ExpensesExtractionRequestHandler.java
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\csv\pkobp\TransactionTypeCSV_PKOBP.java
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\csv\SingleExpenseExtractor.java
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\csv\pkobp\DescriptionParser.java
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\csv\ExtractorRunnerCsv.java
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\csv\pkobp\SingleExpenseExtractorPKOBP.java
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\util\TextEncodingMapper.java
+C:\Users\alexp\Desktop\Projekty Github\Projekty niegithub\ExpensesCounter\ContentExtractorLambda\src\main\java\pl\kania\expensesCounter\extraction\handler\ExpensesExtractionRequest.java

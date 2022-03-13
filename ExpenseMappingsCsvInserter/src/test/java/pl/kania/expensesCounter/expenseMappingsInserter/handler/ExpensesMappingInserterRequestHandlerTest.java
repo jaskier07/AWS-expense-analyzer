@@ -60,5 +60,4 @@ class ExpensesMappingInserterRequestHandlerTest {
         return "base64;bmFtZSxtYXBwaW5nX3R5cGUsZXhwZW5zZV90eXBlLHN1YmNhdGVnb3J5LGxvZ2ljYWxfbmFtZQpiaWVkcm9ua2Esa2V5d29yZCxmb29kLGRpc2NvdW50LGJpZWRyb25rYQ==";
     }
 
-
 }

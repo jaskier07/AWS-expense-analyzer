@@ -1,0 +1,4 @@
+pl\kania\expensesCounter\expenseMappingsInserter\ExpenseMappingDao.class
+pl\kania\expensesCounter\expenseMappingsInserter\ExpenseMappingsCsvParser$CsvHeader.class
+pl\kania\expensesCounter\expenseMappingsInserter\ExpenseMappingsCsvParser.class
+pl\kania\expensesCounter\expenseMappingsInserter\handler\ExpensesMappingInserterRequestHandler.class
