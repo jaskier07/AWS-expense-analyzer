@@ -12,6 +12,7 @@ export default class ExampleChart extends Component {
     }
 
 }
+
 const sample_data = [
     {
       name: 'Page A',

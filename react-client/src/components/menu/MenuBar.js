@@ -4,7 +4,7 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 export default class MenuBar extends Component {
 
     render() {
-        return <Navbar bg="light" expand="lg">
+        return <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
                 <Navbar.Brand href="#home">AWS Expenses Counter</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
