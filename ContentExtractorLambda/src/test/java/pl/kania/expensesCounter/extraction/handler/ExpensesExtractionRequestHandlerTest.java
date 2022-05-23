@@ -27,7 +27,7 @@ class ExpensesExtractionRequestHandlerTest {
         String csvRecord = getExampleCsvRecordWithHeader();
         ExpensesExtractionRequest request = new ExpensesExtractionRequest(BankType.PKO_BP, csvRecord);
         ExpensesExtractionRequestHandler handler = new ExpensesExtractionRequestHandler();
-//        Set<ParsedExpense> parsedExpenses = pl.kania.orchestrator.handler.handleRequest(request, null);
+//        Set<ParsedExpense> parsedExpenses = pl.kania.orchestrator.pl.kania.expensesCounter.transactionSaver.handler.handleRequest(request, null);
 //        Set<ParsedExpense> expectedExpenses = getExpectedExpenses();
 //        Assertions.assertEquals(expectedExpenses, parsedExpenses);
     }

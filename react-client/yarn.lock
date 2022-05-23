@@ -82,7 +82,7 @@
     "@aws-sdk/client-sts" "3.54.1"
     "@aws-sdk/config-resolver" "3.54.1"
     "@aws-sdk/credential-provider-node" "3.54.1"
-    "@aws-sdk/fetch-http-handler" "3.54.1"
+    "@aws-sdk/fetch-http-pl.kania.expensesCounter.transactionSaver.handler" "3.54.1"
     "@aws-sdk/hash-node" "3.54.1"
     "@aws-sdk/invalid-dependency" "3.54.1"
     "@aws-sdk/middleware-content-length" "3.54.1"
@@ -95,7 +95,7 @@
     "@aws-sdk/middleware-stack" "3.54.1"
     "@aws-sdk/middleware-user-agent" "3.54.1"
     "@aws-sdk/node-config-provider" "3.54.1"
-    "@aws-sdk/node-http-handler" "3.54.1"
+    "@aws-sdk/node-http-pl.kania.expensesCounter.transactionSaver.handler" "3.54.1"
     "@aws-sdk/protocol-http" "3.54.1"
     "@aws-sdk/smithy-client" "3.54.1"
     "@aws-sdk/types" "3.54.1"
@@ -120,7 +120,7 @@
     "@aws-crypto/sha256-browser" "2.0.0"
     "@aws-crypto/sha256-js" "2.0.0"
     "@aws-sdk/config-resolver" "3.54.1"
-    "@aws-sdk/fetch-http-handler" "3.54.1"
+    "@aws-sdk/fetch-http-pl.kania.expensesCounter.transactionSaver.handler" "3.54.1"
     "@aws-sdk/hash-node" "3.54.1"
     "@aws-sdk/invalid-dependency" "3.54.1"
     "@aws-sdk/middleware-content-length" "3.54.1"
@@ -131,7 +131,7 @@
     "@aws-sdk/middleware-stack" "3.54.1"
     "@aws-sdk/middleware-user-agent" "3.54.1"
     "@aws-sdk/node-config-provider" "3.54.1"
-    "@aws-sdk/node-http-handler" "3.54.1"
+    "@aws-sdk/node-http-pl.kania.expensesCounter.transactionSaver.handler" "3.54.1"
     "@aws-sdk/protocol-http" "3.54.1"
     "@aws-sdk/smithy-client" "3.54.1"
     "@aws-sdk/types" "3.54.1"
@@ -157,7 +157,7 @@
     "@aws-crypto/sha256-js" "2.0.0"
     "@aws-sdk/config-resolver" "3.54.1"
     "@aws-sdk/credential-provider-node" "3.54.1"
-    "@aws-sdk/fetch-http-handler" "3.54.1"
+    "@aws-sdk/fetch-http-pl.kania.expensesCounter.transactionSaver.handler" "3.54.1"
     "@aws-sdk/hash-node" "3.54.1"
     "@aws-sdk/invalid-dependency" "3.54.1"
     "@aws-sdk/middleware-content-length" "3.54.1"
@@ -170,7 +170,7 @@
     "@aws-sdk/middleware-stack" "3.54.1"
     "@aws-sdk/middleware-user-agent" "3.54.1"
     "@aws-sdk/node-config-provider" "3.54.1"
-    "@aws-sdk/node-http-handler" "3.54.1"
+    "@aws-sdk/node-http-pl.kania.expensesCounter.transactionSaver.handler" "3.54.1"
     "@aws-sdk/protocol-http" "3.54.1"
     "@aws-sdk/smithy-client" "3.54.1"
     "@aws-sdk/types" "3.54.1"
@@ -279,9 +279,9 @@
     "@aws-sdk/types" "3.54.1"
     "tslib" "^2.3.0"
 
-"@aws-sdk/fetch-http-handler@3.54.1":
+"@aws-sdk/fetch-http-pl.kania.expensesCounter.transactionSaver.handler@3.54.1":
   "integrity" "sha512-i2sTy8NjFXMtdlaslGS0vKbz1+9J8Nnt1A7A1gWsJmi6cXofv86glKTtxXxr1BsZu82QAZbSO4lm/XAd5gcWuQ=="
-  "resolved" "https://registry.npmjs.org/@aws-sdk/fetch-http-handler/-/fetch-http-handler-3.54.1.tgz"
+  "resolved" "https://registry.npmjs.org/@aws-sdk/fetch-http-pl.kania.expensesCounter.transactionSaver.handler/-/fetch-http-pl.kania.expensesCounter.transactionSaver.handler-3.54.1.tgz"
   "version" "3.54.1"
   dependencies:
     "@aws-sdk/protocol-http" "3.54.1"
@@ -417,9 +417,9 @@
     "@aws-sdk/types" "3.54.1"
     "tslib" "^2.3.0"
 
-"@aws-sdk/node-http-handler@3.54.1":
+"@aws-sdk/node-http-pl.kania.expensesCounter.transactionSaver.handler@3.54.1":
   "integrity" "sha512-zY9dIIZXms4WcmpcKJxxBPqPydvUTJA3JAoqpf9Huau/oJ4VHYmQCJ6gohmHq2y2f+H0GOf74/QyngncTrKPwg=="
-  "resolved" "https://registry.npmjs.org/@aws-sdk/node-http-handler/-/node-http-handler-3.54.1.tgz"
+  "resolved" "https://registry.npmjs.org/@aws-sdk/node-http-pl.kania.expensesCounter.transactionSaver.handler/-/node-http-pl.kania.expensesCounter.transactionSaver.handler-3.54.1.tgz"
   "version" "3.54.1"
   dependencies:
     "@aws-sdk/abort-controller" "3.54.1"

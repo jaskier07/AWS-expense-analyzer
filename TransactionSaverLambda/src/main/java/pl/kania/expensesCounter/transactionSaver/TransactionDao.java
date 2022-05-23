@@ -1,43 +1,44 @@
-package pl.kania.expensesCounter.expenseMappingsInserter;
+package pl.kania.expensesCounter.transactionSaver;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.model.*;
 import lombok.extern.slf4j.Slf4j;
-import pl.kania.expensesCounter.commons.dto.db.ExpenseMapping;
+import pl.kania.expensesCounter.commons.dto.db.Transaction;
+import pl.kania.expensesCounter.commons.util.DateFormatterProvider;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import static com.amazonaws.regions.Regions.EU_CENTRAL_1;
 import static java.util.stream.Collectors.toList;
 
 @Slf4j
-public class ExpenseMappingDao {
+public class TransactionDao {
 
     private final AmazonDynamoDB dynamoDB;
+    private final DateTimeFormatter formatter;
 
-    public ExpenseMappingDao() {
+    public TransactionDao() {
         this.dynamoDB = AmazonDynamoDBClient.builder()
                 .withRegion(EU_CENTRAL_1.getName())
                 .build();
+        this.formatter = DateFormatterProvider.getLocalDateFormatter();
     }
 
-    public int saveMappings(List<ExpenseMapping> expenseMappings) {
+    public int saveTransactions(List<Transaction> expenseMappings) {
         return Optional.of(expenseMappings.stream()
-                .map(this::mapExpenseToParameterMap)
+                .map(this::mapTransactionToParameterMap)
                 .map(PutRequest::new)
                 .map(WriteRequest::new)
                 .collect(toList()))
                 .map(this::mapWriteRequestToParameterMap)
                 .map(BatchWriteItemRequest::new)
-                .map(request -> saveMappings(request, expenseMappings.size()))
+                .map(request -> save(request, expenseMappings.size()))
                 .orElseThrow();
     }
 
-    private int saveMappings(BatchWriteItemRequest request, int mappingsSize) {
+    private int save(BatchWriteItemRequest request, int mappingsSize) {
         log.info(request.toString());
         BatchWriteItemResult result = dynamoDB.batchWriteItem(request);
         log.info(result.toString());
@@ -46,17 +47,17 @@ public class ExpenseMappingDao {
 
     private Map<String, List<WriteRequest>> mapWriteRequestToParameterMap(List<WriteRequest> writeRequests) {
         Map<String, List<WriteRequest>> writeRequestsMap = new HashMap<>();
-        writeRequestsMap.put("expense_mappings", writeRequests);
+        writeRequestsMap.put("transactions", writeRequests);
         return writeRequestsMap;
     }
 
-    private Map<String, AttributeValue> mapExpenseToParameterMap(ExpenseMapping mapping) {
+    private Map<String, AttributeValue> mapTransactionToParameterMap(Transaction transaction) {
         Map<String, AttributeValue> parameterMap = new HashMap<>();
-        parameterMap.put("name", new AttributeValue(mapping.getName()));
-        parameterMap.put("mapping_type", new AttributeValue(mapping.getMappingType()));
-        parameterMap.put("expense_type", new AttributeValue(mapping.getExpenseType()));
-        parameterMap.put("logical_name", new AttributeValue(mapping.getLogicalName()));
-        parameterMap.put("subcategory", new AttributeValue(mapping.getExpenseTypeSubcategory()));
+        parameterMap.put("id", new AttributeValue(transaction.getOperationId()));
+        parameterMap.put("transaction_type", new AttributeValue(transaction.getType().name()));
+        parameterMap.put("amount", new AttributeValue(transaction.getAmount().toString()));
+        parameterMap.put("description", new AttributeValue(transaction.getDescription()));
+        parameterMap.put("date", new AttributeValue(formatter.format(transaction.getDate())));
         return parameterMap;
     }
 }

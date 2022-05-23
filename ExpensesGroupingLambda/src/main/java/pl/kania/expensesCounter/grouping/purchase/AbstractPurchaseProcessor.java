@@ -39,7 +39,7 @@ public abstract class AbstractPurchaseProcessor<SEARCH_PARAM_TYPE> {
 
                     return new SingleExpense(expense.getAmount(), expenseMapping);
                 })
-                .collect(groupingBy(SingleExpense e -> e.getMapping().getExpenseType())));
+                .collect(null));//TODO groupingBy(SingleExpense e -> e.getMapping().getExpenseType())));
     }
 
     protected abstract Map<ParsedExpense, SEARCH_PARAM_TYPE> transformForSearch(List<ParsedExpense> expenses);

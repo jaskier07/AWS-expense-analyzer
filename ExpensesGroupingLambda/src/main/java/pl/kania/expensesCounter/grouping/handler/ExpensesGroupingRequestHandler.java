@@ -56,11 +56,11 @@ public class ExpensesGroupingRequestHandler implements RequestHandler<String, St
         return Optional.of(new ExpenseGroupingResult(Arrays.asList(
                 GroupingResultPerExpenseType.builder()
                         .type(ExpenseType.FOOD)
-                        .sum(23.)
+                        .expensesSum(23.)
                         .build(),
                 GroupingResultPerExpenseType.builder()
                         .type(ExpenseType.FOOD)
-                        .sum(25.11)
+                        .expensesSum(25.11)
                         .build()
         ))).orElseThrow();
     }

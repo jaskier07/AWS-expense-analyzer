@@ -14,7 +14,7 @@
         <module>OrchestratorLambda</module>
         <module>ExpensesGroupingLambda</module>
         <module>Commons</module>
-        <module>ExpenseMappingsCsvInserter</module>
+        <module>ExpenseMappingsCsvInserterLambda</module>
         <module>TransactionSaverLambda</module>
     </modules>
     <properties>

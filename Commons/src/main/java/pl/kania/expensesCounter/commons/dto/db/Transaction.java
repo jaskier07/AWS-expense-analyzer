@@ -7,12 +7,12 @@ import java.time.LocalDate;
 
 @Data
 @Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(force = true)
 public class Transaction {
-    LocalDate operationDate;
     String operationId;
-    TransactionType transactionType;
+    LocalDate date;
+    TransactionType type;
     Double amount;
-    Double balance;
     String description;
 }

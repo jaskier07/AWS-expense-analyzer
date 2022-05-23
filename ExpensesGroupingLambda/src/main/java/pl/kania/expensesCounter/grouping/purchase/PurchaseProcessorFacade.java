@@ -20,7 +20,7 @@ public class PurchaseProcessorFacade {
     private final CardPurchaseProcessor cardPurchaseProcessor = new CardPurchaseProcessor(cardSearch);
 
     public List<GroupingResultPerExpenseType> process(Map<TransactionType, List<ParsedExpense>> expensesPerTransactionType) {
-        return expensesPerTransactionType.entrySet().stream()
+        expensesPerTransactionType.entrySet().stream()
                 .map(entry -> {
                     TransactionType transactionType = entry.getKey();
                     List<ParsedExpense> expenses = entry.getValue();
@@ -34,8 +34,9 @@ public class PurchaseProcessorFacade {
                             return new ArrayList<GroupingResultPerExpenseType>();
                     }
                 })
-                .filter(Objects::nonNull)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+                .filter(Objects::nonNull);
+        return null;// TODO
+//                .flatMap(Collection::stream)
+//                .collect(Collectors.toList());
     }
 }
