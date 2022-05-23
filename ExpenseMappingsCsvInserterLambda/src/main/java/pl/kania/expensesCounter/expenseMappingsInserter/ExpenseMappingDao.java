@@ -17,7 +17,6 @@ import static java.util.stream.Collectors.toList;
 @Slf4j
 public class ExpenseMappingDao {
 
-
     private final AmazonDynamoDB dynamoDB;
 
     public ExpenseMappingDao() {

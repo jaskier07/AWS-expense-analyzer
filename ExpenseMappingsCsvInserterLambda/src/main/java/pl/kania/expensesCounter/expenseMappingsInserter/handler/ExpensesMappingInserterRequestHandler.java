@@ -18,8 +18,10 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import static java.lang.String.format;
+import static java.util.function.Predicate.not;
 
 @Slf4j
 @AllArgsConstructor
@@ -41,6 +43,7 @@ public class ExpensesMappingInserterRequestHandler implements RequestHandler<Str
         log.info(input);
 
         return Optional.ofNullable(input)
+                .filter(not(String::isBlank))
                 .map(this::decodeIfNecessary)
                 .map(this::readMappings)
                 .map(expenseMappingDao::saveMappings)
