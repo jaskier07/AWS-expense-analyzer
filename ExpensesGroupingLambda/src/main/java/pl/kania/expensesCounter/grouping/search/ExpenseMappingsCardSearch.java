@@ -34,7 +34,7 @@ public class ExpenseMappingsCardSearch extends ExpenseMappingsSearch<List<String
 
     @Override
     public Either<String, ExpenseMapping> search(final List<String> searchParameters) {
-        if (searchParameters.isEmpty()) {
+        if (searchParameters == null || searchParameters.isEmpty()) {
             return Either.left("Empty search parameters list: " + searchParameters);
         }
 
@@ -42,7 +42,7 @@ public class ExpenseMappingsCardSearch extends ExpenseMappingsSearch<List<String
             Map<String, AttributeValue> result = null;
             List<String> currentSearchParameters = new ArrayList<>(searchParameters);
 
-            for (int i = 0; noResults(result) && canKeepSearchingWithLessKeywords(currentSearchParameters); i++) {
+            for (int i = 0; noResults(result) && canKeepSearchingWithLessKeywords(currentSearchParameters, i); i++) {
                 if (i != 0) {
                     removeLastSearchParameter(currentSearchParameters);
                     log.info("Search retry #{} with parameters: {}", i, currentSearchParameters);
@@ -54,11 +54,13 @@ public class ExpenseMappingsCardSearch extends ExpenseMappingsSearch<List<String
             }
 
             return mapToResult(result);
-        }).getOrElse(Either.left("Problem searching for mappings"));
+        })
+                .recover(IllegalStateException.class, e -> Either.left(e.getMessage()))
+                .getOrElse(Either.left("Problem searching for mappings"));
     }
 
-    private boolean canKeepSearchingWithLessKeywords(List<String> searchParameters) {
-        return searchParameters.size() > 1;
+    private boolean canKeepSearchingWithLessKeywords(List<String> searchParameters, int iteration) {
+        return iteration == 0 || searchParameters.size() > 1;
     }
 
     private void removeLastSearchParameter(List<String> searchParameters) {
@@ -115,7 +117,7 @@ public class ExpenseMappingsCardSearch extends ExpenseMappingsSearch<List<String
     }
 
     private void throwExceptionIfTooManyLoopIterations(int i) {
-        if (i > LOOP_OPERATIONS_LIMIT) {
+        if (i > LOOP_OPERATIONS_LIMIT - 1) {
             throw new IllegalStateException("Too many loop iterations: " + LOOP_OPERATIONS_LIMIT);
         }
     }
