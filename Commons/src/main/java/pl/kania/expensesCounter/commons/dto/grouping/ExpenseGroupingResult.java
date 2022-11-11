@@ -1,16 +1,17 @@
 package pl.kania.expensesCounter.commons.dto.grouping;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.Value;
-import pl.kania.expensesCounter.commons.dto.db.ExpenseType;
+import pl.kania.expensesCounter.commons.dto.db.ExpenseCategory;
 
 import java.util.List;
+import java.util.Map;
 
 @Value
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 public class ExpenseGroupingResult {
-    List<GroupingResultPerExpenseType> groupings;
+    Map<ExpenseCategory, GroupingResultPerExpenseCategory> groupings;
+    List<ExpenseError> errors;
 }

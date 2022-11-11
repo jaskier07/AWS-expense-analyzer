@@ -8,20 +8,15 @@ import lombok.extern.slf4j.Slf4j;
 import pl.kania.expensesCounter.commons.dto.TransactionType;
 import pl.kania.expensesCounter.commons.dto.extraction.ContentExtractionResult;
 import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
-import pl.kania.expensesCounter.commons.dto.db.ExpenseType;
 import pl.kania.expensesCounter.commons.dto.grouping.ExpenseGroupingResult;
-import pl.kania.expensesCounter.commons.dto.grouping.GroupingResultPerExpenseType;
 import pl.kania.expensesCounter.commons.util.Base64RequestReader;
 import pl.kania.expensesCounter.commons.util.ObjectMapperProvider;
 import pl.kania.expensesCounter.commons.util.RequestHelper;
 import pl.kania.expensesCounter.grouping.ParsedExpensesGrouper;
-import pl.kania.expensesCounter.commons.dto.db.ExpenseMapping;
 import pl.kania.expensesCounter.grouping.purchase.PurchaseProcessorFacade;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
 public class ExpensesGroupingRequestHandler implements RequestHandler<String, String> {
@@ -33,35 +28,25 @@ public class ExpensesGroupingRequestHandler implements RequestHandler<String, St
     private final PurchaseProcessorFacade purchaseProcessorFacade = new PurchaseProcessorFacade();
 
     @Override
-    public String handleRequest(String encodeInput, Context context) {
-        log.info(encodeInput);
+    public String handleRequest(String encodedInput, Context context) {
+        log.info(encodedInput);
 
-        String input = requestReader.readStringBase64Encoded(encodeInput).orElseThrow();
-        ContentExtractionResult parsedExpenses = Try.of(() -> objectMapper.readValue(input, ContentExtractionResult.class)).get();
-        log.info(parsedExpenses.getExpenses().toString());
-
+        ContentExtractionResult parsedExpenses = readContentExtractionResult(encodedInput);
         Map<TransactionType, List<ParsedExpense>> expensesPerTransactionType = expensesGrouper.groupByExpenseTypes(parsedExpenses.getExpenses());
         log.info(expensesPerTransactionType.toString());
-        List<GroupingResultPerExpenseType> mappings = purchaseProcessorFacade.process(expensesPerTransactionType);
-        log.info(mappings.toString());
 
-        ExpenseGroupingResult results = getStub();
+        ExpenseGroupingResult result = purchaseProcessorFacade.groupExpensesByExpenseCategories(expensesPerTransactionType);
+        log.info(result.toString());
 
-        return Try.of(() -> requestHelper.writeObjectAsBase64(results))
+        return Try.of(() -> requestHelper.writeObjectAsBase64(result))
                 .onFailure(e -> log.error("Error writing object as json base64 response", e))
                 .getOrNull();
     }
 
-    private ExpenseGroupingResult getStub() {
-        return Optional.of(new ExpenseGroupingResult(Arrays.asList(
-                GroupingResultPerExpenseType.builder()
-                        .type(ExpenseType.FOOD)
-                        .expensesSum(23.)
-                        .build(),
-                GroupingResultPerExpenseType.builder()
-                        .type(ExpenseType.FOOD)
-                        .expensesSum(25.11)
-                        .build()
-        ))).orElseThrow();
+    private ContentExtractionResult readContentExtractionResult(String encodedInput) {
+        String input = requestReader.readStringBase64Encoded(encodedInput).orElseThrow();
+        ContentExtractionResult parsedExpenses = Try.of(() -> objectMapper.readValue(input, ContentExtractionResult.class)).get();
+        log.info(parsedExpenses.getExpenses().toString());
+        return parsedExpenses;
     }
 }

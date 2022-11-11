@@ -1,5 +1,5 @@
 package pl.kania.expensesCounter.commons.dto.db;
 
-public enum ExpenseType {
+public enum ExpenseCategory {
     FOOD
 }

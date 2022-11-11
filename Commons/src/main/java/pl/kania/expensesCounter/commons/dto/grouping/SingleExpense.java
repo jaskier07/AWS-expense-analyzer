@@ -11,4 +11,9 @@ import pl.kania.expensesCounter.commons.dto.db.ExpenseMapping;
 public class SingleExpense {
     double amount;
     ExpenseMapping mapping;
+
+    public SingleExpense(ExpenseMapping mapping) {
+        this.mapping = mapping;
+        this.amount = Double.parseDouble(mapping.getExpenseCategory());
+    }
 }

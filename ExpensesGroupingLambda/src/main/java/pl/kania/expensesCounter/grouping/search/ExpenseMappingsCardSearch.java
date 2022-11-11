@@ -5,13 +5,17 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
 import com.amazonaws.services.dynamodbv2.model.GetItemResult;
+import io.vavr.control.Either;
+import io.vavr.control.Try;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import pl.kania.expensesCounter.commons.dto.db.ExpenseMapping;
 
 import java.util.*;
+import java.util.function.Function;
 
 import static com.amazonaws.regions.Regions.EU_CENTRAL_1;
+import static java.util.function.Predicate.not;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -29,26 +33,28 @@ public class ExpenseMappingsCardSearch extends ExpenseMappingsSearch<List<String
     }
 
     @Override
-    public ExpenseMapping search(List<String> searchParameters) {
+    public Either<String, ExpenseMapping> search(final List<String> searchParameters) {
         if (searchParameters.isEmpty()) {
-            throw new IllegalArgumentException("Empty search parameters list: " + searchParameters);
+            return Either.left("Empty search parameters list: " + searchParameters);
         }
 
-        Map<String, AttributeValue> result = null;
-        searchParameters = new ArrayList<>(searchParameters);
+        return Try.of(() -> {
+            Map<String, AttributeValue> result = null;
+            List<String> currentSearchParameters = new ArrayList<>(searchParameters);
 
-        for (int i = 0; noResults(result) && canKeepSearchingWithLessKeywords(searchParameters); i++) {
-            if (i != 0) {
-                removeLastSearchParameter(searchParameters);
-                log.info("Search retry #{} with parameters: {}", i, searchParameters);
-                throwExceptionIfTooManyLoopIterations(i);
+            for (int i = 0; noResults(result) && canKeepSearchingWithLessKeywords(currentSearchParameters); i++) {
+                if (i != 0) {
+                    removeLastSearchParameter(currentSearchParameters);
+                    log.info("Search retry #{} with parameters: {}", i, currentSearchParameters);
+                    throwExceptionIfTooManyLoopIterations(i);
+                }
+
+                GetItemRequest itemRequest = getSearchRequest(currentSearchParameters);
+                result = getSearchResults(itemRequest);
             }
 
-            GetItemRequest itemRequest = getSearchRequest(searchParameters);
-            result = getSearchResults(itemRequest);
-        }
-
-        return mapToResult(result);
+            return mapToResult(result);
+        }).getOrElse(Either.left("Problem searching for mappings"));
     }
 
     private boolean canKeepSearchingWithLessKeywords(List<String> searchParameters) {
@@ -85,14 +91,27 @@ public class ExpenseMappingsCardSearch extends ExpenseMappingsSearch<List<String
         return itemRequest;
     }
 
-    private ExpenseMapping mapToResult(Map<String, AttributeValue> result) {
+    private Either<String, ExpenseMapping> mapToResult(Map<String, AttributeValue> result) {
         return Optional.ofNullable(result)
-                .map((map) -> {
-                    Set<String> keys = map.keySet();
-                    log.info(keys.toString());
-                    return new ExpenseMapping(null, null, null, null, null);
+                .map((Map<String, AttributeValue> map) -> {
+                    log.info(map.toString());
+                    return new ExpenseMapping(
+                            getStringValue("name", map),
+                            getStringValue("mappingType", map),
+                            getStringValue("expenseType", map),
+                            getStringValue("expenseTypeSubcategory", map),
+                            getStringValue("logicalName", map)
+                    );
                 })
-                .orElseThrow();
+                .map((Function<ExpenseMapping, Either<String, ExpenseMapping>>) Either::right)
+                .orElse(Either.left("Problem mapping to result"));
+    }
+
+    private String getStringValue(String key, Map<String, AttributeValue> result) {
+        return Optional.ofNullable(result.get(key))
+                .map(r -> r.getS())
+                .filter(not(String::isBlank))
+                .orElse(null);
     }
 
     private void throwExceptionIfTooManyLoopIterations(int i) {

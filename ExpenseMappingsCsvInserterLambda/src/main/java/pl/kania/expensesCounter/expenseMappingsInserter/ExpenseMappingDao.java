@@ -54,7 +54,7 @@ public class ExpenseMappingDao {
         Map<String, AttributeValue> parameterMap = new HashMap<>();
         parameterMap.put("name", new AttributeValue(mapping.getName()));
         parameterMap.put("mapping_type", new AttributeValue(mapping.getMappingType()));
-        parameterMap.put("expense_type", new AttributeValue(mapping.getExpenseType()));
+        parameterMap.put("expense_type", new AttributeValue(mapping.getExpenseCategory()));
         parameterMap.put("logical_name", new AttributeValue(mapping.getLogicalName()));
         parameterMap.put("subcategory", new AttributeValue(mapping.getExpenseTypeSubcategory()));
         return parameterMap;

@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import pl.kania.expensesCounter.commons.dto.extraction.ContentExtractionResult;
 import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
 import pl.kania.expensesCounter.commons.dto.grouping.ExpenseGroupingResult;
-import pl.kania.expensesCounter.commons.dto.grouping.GroupingResultPerExpenseType;
 import pl.kania.expensesCounter.commons.util.Base64RequestReader;
 import pl.kania.expensesCounter.commons.util.ObjectMapperProvider;
 

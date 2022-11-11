@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import pl.kania.expensesCounter.commons.dto.db.ExpenseMapping;
-import pl.kania.expensesCounter.commons.dto.db.MappingType;
 
 import java.io.Reader;
 import java.util.List;
@@ -46,7 +45,7 @@ public class ExpenseMappingsCsvParser {
     private ExpenseMapping parseRecord(CSVRecord record) {
         ExpenseMapping mapping = new ExpenseMapping();
         mapping.setName(parseCsvValue(NAME, record));
-        mapping.setExpenseType(parseCsvValue(EXPENSE_TYPE, record));
+        mapping.setExpenseCategory(parseCsvValue(EXPENSE_TYPE, record));
         mapping.setLogicalName(parseCsvValue(LOGICAL_NAME, record));
         mapping.setMappingType(parseCsvValue(MAPPING_TYPE, record));
         mapping.setExpenseTypeSubcategory(parseCsvValue(SUBCATEGORY, record));
