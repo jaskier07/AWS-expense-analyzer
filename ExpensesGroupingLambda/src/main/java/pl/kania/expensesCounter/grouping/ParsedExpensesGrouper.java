@@ -12,7 +12,7 @@ public class ParsedExpensesGrouper {
 
     public Map<TransactionType, List<ParsedExpense>> groupByExpenseTypes(List<ParsedExpense> expenses) {
         return expenses.stream()
-                .filter(expense -> expense.getTransactionType().isExpense())
+//                .filter(expense -> expense.getTransactionType().isExpense()) // FIXME is this needed?
                 .collect(groupingBy(ParsedExpense::getTransactionType));
     }
 

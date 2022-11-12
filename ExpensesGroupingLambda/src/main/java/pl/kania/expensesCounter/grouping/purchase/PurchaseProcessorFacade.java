@@ -3,7 +3,6 @@ package pl.kania.expensesCounter.grouping.purchase;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import pl.kania.expensesCounter.commons.dto.TransactionType;
-import pl.kania.expensesCounter.commons.dto.db.ExpenseCategory;
 import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
 import pl.kania.expensesCounter.commons.dto.grouping.ExpenseError;
 import pl.kania.expensesCounter.commons.dto.grouping.ExpenseGroupingResult;
@@ -29,7 +28,7 @@ public class PurchaseProcessorFacade {
     public ExpenseGroupingResult groupExpensesByExpenseCategories(Map<TransactionType, List<ParsedExpense>> expensesPerTransactionType) {
         List<ExpenseGroupingResult> results = groupAllExpensesByExpenseTypes(expensesPerTransactionType);
 
-        Map<ExpenseCategory, GroupingResultPerExpenseCategory> groupings = getGroupings(results);
+        Map<String, GroupingResultPerExpenseCategory> groupings = getGroupings(results);
         List<ExpenseError> errors = gatherErrors(results);
 
         return new ExpenseGroupingResult(groupings, errors);
@@ -72,8 +71,8 @@ public class PurchaseProcessorFacade {
                 .collect(Collectors.toList());
     }
 
-    private Map<ExpenseCategory, GroupingResultPerExpenseCategory> getGroupings(List<ExpenseGroupingResult> results) {
-        Map<ExpenseCategory, GroupingResultPerExpenseCategory> groupings = new HashMap<>();
+    private Map<String, GroupingResultPerExpenseCategory> getGroupings(List<ExpenseGroupingResult> results) {
+        Map<String, GroupingResultPerExpenseCategory> groupings = new HashMap<>();
 
         results.stream()
                 .map(ExpenseGroupingResult::getGroupings)

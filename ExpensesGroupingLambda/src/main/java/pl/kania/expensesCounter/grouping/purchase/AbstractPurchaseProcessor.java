@@ -3,7 +3,6 @@ package pl.kania.expensesCounter.grouping.purchase;
 import io.vavr.control.Either;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import pl.kania.expensesCounter.commons.dto.db.ExpenseCategory;
 import pl.kania.expensesCounter.commons.dto.db.ExpenseMapping;
 import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
 import pl.kania.expensesCounter.commons.dto.grouping.ExpenseError;
@@ -30,7 +29,7 @@ public abstract class AbstractPurchaseProcessor<SEARCH_PARAM_TYPE> {
         Map<ParsedExpense, SEARCH_PARAM_TYPE> searchParametersPerExpense = transformForSearch(expenses);
         log.info("Card search parameters: " + searchParametersPerExpense.toString());
 
-        Map<ExpenseCategory, GroupingResultPerExpenseCategory> groupingResults = new HashMap<>();
+        Map<String, GroupingResultPerExpenseCategory> expensesPerCategory = new HashMap<>();
         List<SingleExpense> expenseMappings = new ArrayList<>();
         List<ExpenseError> errors = new ArrayList<>();
 
@@ -52,9 +51,9 @@ public abstract class AbstractPurchaseProcessor<SEARCH_PARAM_TYPE> {
 
         expenseMappings.stream()
                 .collect(groupingBy(mapping -> mapping.getMapping().getExpenseCategory()))
-                .forEach((category, groupedExpenses) -> groupingResults.put(ExpenseCategory.valueOf(category), new GroupingResultPerExpenseCategory(category, groupedExpenses)));
+                .forEach((category, groupedExpenses) -> expensesPerCategory.put(category, new GroupingResultPerExpenseCategory(category, groupedExpenses)));
 
-        return new ExpenseGroupingResult(groupingResults, errors);
+        return new ExpenseGroupingResult(expensesPerCategory, errors);
     }
 
     private void addMappingToResults(Either<ExpenseError, SingleExpense> mapping, List<SingleExpense> expenseMappings, List<ExpenseError> errors) {

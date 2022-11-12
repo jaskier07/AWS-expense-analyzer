@@ -3,7 +3,6 @@ package pl.kania.expensesCounter.commons.dto.grouping;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Value;
-import pl.kania.expensesCounter.commons.dto.db.ExpenseCategory;
 
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,6 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 public class ExpenseGroupingResult {
-    Map<ExpenseCategory, GroupingResultPerExpenseCategory> groupings;
+    Map<String, GroupingResultPerExpenseCategory> groupings;
     List<ExpenseError> errors;
 }

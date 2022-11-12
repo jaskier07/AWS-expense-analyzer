@@ -4,7 +4,6 @@ pl\kania\expensesCounter\commons\util\DateFormatterProvider.class
 pl\kania\expensesCounter\commons\dto\grouping\ExpenseError.class
 pl\kania\expensesCounter\commons\dto\TransactionType.class
 pl\kania\expensesCounter\commons\util\Base64RequestReader.class
-pl\kania\expensesCounter\commons\dto\db\ExpenseCategory.class
 pl\kania\expensesCounter\commons\dto\db\ExpenseMapping.class
 pl\kania\expensesCounter\commons\dto\db\Transaction$TransactionBuilder.class
 pl\kania\expensesCounter\commons\dto\grouping\SingleExpense.class

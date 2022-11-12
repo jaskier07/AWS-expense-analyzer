@@ -1,17 +1,18 @@
 package pl.kania.expensesCounter.grouping.purchase.card;
 
-import com.amazonaws.services.dynamodbv2.xspec.S;
 import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
 import pl.kania.expensesCounter.grouping.purchase.AbstractPurchaseProcessor;
 import pl.kania.expensesCounter.grouping.search.ExpenseMappingsSearch;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 
 public class CardPurchaseProcessor extends AbstractPurchaseProcessor<List<String>> {
 
+    private static final String ANY_WHITESPACE = "\\s+";
 
     public CardPurchaseProcessor(ExpenseMappingsSearch<List<String>> expenseMappingsSearch) {
         super(expenseMappingsSearch);
@@ -27,6 +28,6 @@ public class CardPurchaseProcessor extends AbstractPurchaseProcessor<List<String
     }
 
     private List<String> splitKeywords(ParsedExpense expense) {
-        return asList(expense.getDescription().split(" \\/"));
+        return asList(expense.getDescription().split(ANY_WHITESPACE));
     }
 }

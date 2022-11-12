@@ -55,7 +55,11 @@ public class ExpenseMappingsCardSearch extends ExpenseMappingsSearch<List<String
 
             return mapToResult(result);
         })
-                .recover(IllegalStateException.class, e -> Either.left(e.getMessage()))
+                .recover(Exception.class, e -> {
+                    String joinedParameters = String.join(", ", searchParameters);
+                    log.error("Problem searching for mappings for search parameters ({})", joinedParameters, e);
+                    return Either.left(e.getMessage());
+                })
                 .getOrElse(Either.left("Problem searching for mappings"));
     }
 
@@ -99,10 +103,10 @@ public class ExpenseMappingsCardSearch extends ExpenseMappingsSearch<List<String
                     log.info(map.toString());
                     return new ExpenseMapping(
                             getStringValue("name", map),
-                            getStringValue("mappingType", map),
-                            getStringValue("expenseType", map),
-                            getStringValue("expenseTypeSubcategory", map),
-                            getStringValue("logicalName", map)
+                            getStringValue("mapping_type", map),
+                            getStringValue("expense_type", map),
+                            getStringValue("subcategory", map),
+                            getStringValue("logical_name", map)
                     );
                 })
                 .map((Function<ExpenseMapping, Either<String, ExpenseMapping>>) Either::right)
