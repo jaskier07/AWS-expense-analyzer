@@ -31,3 +31,12 @@ ContentExtractorLambda/src/test/resources/pdfs/*
 ContentExtractorLambda/src/main/resources/pdfs/*
 ContentExtractorLambda/src/main/resources/csv/*
 ignored/*
+
+# target
+Commons/target/*
+ContentExtractorLambda/target/*
+CsvS3DownloaderLambda/target/*
+ExpenseMappingsCsvInserterLambda/target/*
+ExpensesGroupingLambda/target/*
+OrchestratorLambda/target/*
+TransactionSaverLambda/target/*
