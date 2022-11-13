@@ -1,4 +1,4 @@
-package pl.kania.expensesCounter.extraction.csv.pkobp
+package pl.kania.expensesCounter.extraction.csv.pkobp.parser
 
 import org.apache.commons.csv.CSVRecord
 import org.mockito.Mockito
@@ -9,12 +9,12 @@ import java.util.stream.IntStream
 
 import static org.mockito.Mockito.when
 
-class DescriptionParserTest extends Specification {
+class DescriptionParserFacadeTest extends Specification {
 
     private static final int CSV_FIRST_COLUMN_INDEX = 0
     private static final int CSV_LAST_COLUMN_INDEX = 10
 
-    private DescriptionParser descriptionParser = new DescriptionParser()
+    private DescriptionParserFacade descriptionParser = new DescriptionParserFacade()
 
     def "parses purchase web mobile code"() {
         given:

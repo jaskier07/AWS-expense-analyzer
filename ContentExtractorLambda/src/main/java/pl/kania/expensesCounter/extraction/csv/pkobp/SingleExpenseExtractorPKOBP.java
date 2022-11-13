@@ -2,9 +2,10 @@ package pl.kania.expensesCounter.extraction.csv.pkobp;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVRecord;
+import pl.kania.expensesCounter.commons.dto.TransactionType;
 import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
 import pl.kania.expensesCounter.extraction.csv.SingleExpenseExtractor;
-import pl.kania.expensesCounter.commons.dto.TransactionType;
+import pl.kania.expensesCounter.extraction.csv.pkobp.parser.DescriptionParserFacade;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -13,9 +14,9 @@ import java.time.format.DateTimeFormatter;
 public class SingleExpenseExtractorPKOBP implements SingleExpenseExtractor {
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private final DescriptionParser descriptionParser;
+    private final DescriptionParserFacade descriptionParser;
 
-    public SingleExpenseExtractorPKOBP(DescriptionParser descriptionParser) {
+    public SingleExpenseExtractorPKOBP(DescriptionParserFacade descriptionParser) {
         this.descriptionParser = descriptionParser;
     }
 

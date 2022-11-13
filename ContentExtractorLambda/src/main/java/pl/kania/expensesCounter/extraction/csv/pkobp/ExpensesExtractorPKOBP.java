@@ -1,6 +1,7 @@
 package pl.kania.expensesCounter.extraction.csv.pkobp;
 
 import pl.kania.expensesCounter.extraction.csv.ExpensesExtractorCSV;
+import pl.kania.expensesCounter.extraction.csv.pkobp.parser.DescriptionParserFacade;
 
 public class ExpensesExtractorPKOBP extends ExpensesExtractorCSV {
 
@@ -8,7 +9,7 @@ public class ExpensesExtractorPKOBP extends ExpensesExtractorCSV {
     private static final char DELIMITER = ',';
 
     public ExpensesExtractorPKOBP() {
-        super(new SingleExpenseExtractorPKOBP(new DescriptionParser()));
+        super(new SingleExpenseExtractorPKOBP(new DescriptionParserFacade()));
     }
 
     @Override
