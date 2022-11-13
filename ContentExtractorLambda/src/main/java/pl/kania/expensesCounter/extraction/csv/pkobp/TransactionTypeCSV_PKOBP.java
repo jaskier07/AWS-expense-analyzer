@@ -11,15 +11,15 @@ import java.util.Arrays;
 @Getter
 public enum TransactionTypeCSV_PKOBP {
     INCOMING_TRANSFER(
-            new String[]{"Przelew na rachunek", "Przelew na telefon przychodz. zew.", "Zwrot w terminalu", "Zwrot płatności kartą"},
+            new String[]{"Przelew na rachunek", "Przelew na telefon przychodz. zew.", "Zwrot w terminalu", "Zwrot płatności kartą", "Przelew Natychmiastowy na rachunek"},
             TransactionType.INCOMING_TRANSFER
     ),
     OUTGOING_TRANSFER(
-            new String[]{"Przelew z rachunku", "Przelew na telefon wychodzący zew.", "Przelew na telefon wychodzący wew.", "Zlecenie stałe"},
+            new String[]{"Przelew z rachunku", "Przelew na telefon wychodzący zew.", "Przelew na telefon wychodzący wew.", "Zlecenie stałe", "Przelew z karty"},
             TransactionType.OUTGOING_TRANSFER
     ),
     PURCHASE_CARD(
-            new String[]{"Płatność kartą"},
+            new String[]{"Płatność kartą", "Obciążenie"},
             TransactionType.PURCHASE_CARD
     ),
     PURCHASE_WEB_MOBILE_CODE(
@@ -29,6 +29,10 @@ public enum TransactionTypeCSV_PKOBP {
     WITHDRAWAL(
             new String[]{"Wypłata z bankomatu"},
             TransactionType.WITHDRAWAL
+    ),
+    BANK_PAYMENTS(
+            new String[]{"Spłata kredytu"},
+            TransactionType.OUTGOING_TRANSFER
     ),
     OTHER(
             new String[]{"Przelew Paybynet"},
