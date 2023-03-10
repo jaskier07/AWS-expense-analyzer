@@ -25,7 +25,7 @@ public class DescriptionParserIncomingTransferTest extends Specification {
 
         where:
         expectedDescription        || line0                           || line2
-        "katarzyna t ; banany"     || "Nazwa nadawcy: KATARZYNA T"    || "Tytu³: BANANY"
-        "aleksander olo ; za hajs" || "Nazwa nadawcy: ALEKSANDER OLO" || "Tytu³: ZA HAJS"
+        "katarzyna t banany"     || "Nazwa nadawcy: KATARZYNA T"    || "Tytu³: BANANY"
+        "aleksander olo za hajs" || "Nazwa nadawcy: ALEKSANDER OLO" || "Tytu³: ZA HAJS"
     }
 }

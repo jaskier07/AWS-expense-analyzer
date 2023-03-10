@@ -10,14 +10,14 @@ import spock.lang.Specification
 import java.util.stream.Collectors
 import java.util.stream.IntStream
 
-class ExpenseMappingsCardSearchTest extends Specification {
+class ExpenseMappingsWordListReductionSearchTest extends Specification {
 
-    private ExpenseMappingsCardSearch cardSearch
+    private ExpenseMappingsWordListReductionSearch cardSearch
     private AmazonDynamoDB dynamoDB
 
     def setup() {
         this.dynamoDB = Mock(AmazonDynamoDB)
-        this.cardSearch = new ExpenseMappingsCardSearch(dynamoDB)
+        this.cardSearch = new ExpenseMappingsWordListReductionSearch(dynamoDB)
     }
 
     def "returns error message when empty search parameters"() {

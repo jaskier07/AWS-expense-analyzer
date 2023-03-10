@@ -10,7 +10,7 @@ public interface DescriptionParser {
    int CONTEXT_INDEX_LINE_1 = 8;
    int CONTEXT_INDEX_LINE_2 = 9;
    int CONTEXT_INDEX_LINE_3 = 10;
-   String SEPARATOR = " ; ";
+   String SEPARATOR = " ";
    String EMPTY_STRING = "";
 
     String parse(CSVRecord record);

@@ -19,14 +19,14 @@ import static java.util.function.Predicate.not;
 
 @Slf4j
 @RequiredArgsConstructor
-public class ExpenseMappingsCardSearch extends ExpenseMappingsSearch<List<String>> {
+public class ExpenseMappingsWordListReductionSearch extends ExpenseMappingsSearch<List<String>> {
 
     private static final String TABLE_NAME = "expense_mappings";
     private static final String COLUMN_TO_SEARCH = "name";
     private static final int LOOP_OPERATIONS_LIMIT = 20;
     private final AmazonDynamoDB dynamoDB;
 
-    public ExpenseMappingsCardSearch() {
+    public ExpenseMappingsWordListReductionSearch() {
         this.dynamoDB = AmazonDynamoDBClient.builder()
                 .withRegion(EU_CENTRAL_1.getName())
                 .build();

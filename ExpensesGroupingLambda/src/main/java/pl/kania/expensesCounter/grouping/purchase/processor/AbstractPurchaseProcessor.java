@@ -1,4 +1,4 @@
-package pl.kania.expensesCounter.grouping.purchase;
+package pl.kania.expensesCounter.grouping.purchase.processor;
 
 import io.vavr.control.Either;
 import lombok.RequiredArgsConstructor;

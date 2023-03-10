@@ -17,11 +17,13 @@ public abstract class ExpensesExtractorCSV {
 
     public ExpensesExtractorCSV(SingleExpenseExtractor extractor) {
         this.extractor = extractor;
-        this.csvFormat = CSVFormat.DEFAULT
-                .withHeader(getHeaderValues())
-                .withDelimiter(getDelimiter())
-                .withFirstRecordAsHeader()
-                .withAllowMissingColumnNames();
+        this.csvFormat = CSVFormat.Builder.create()
+                .setHeader(getHeaderValues())
+                .setDelimiter(getDelimiter())
+                .setAllowMissingColumnNames(true)
+                .setSkipHeaderRecord(true)
+                .setIgnoreHeaderCase(true)
+                .build();
     }
 
     protected abstract char getDelimiter();

@@ -7,8 +7,10 @@ import pl.kania.expensesCounter.commons.dto.extraction.ParsedExpense;
 import pl.kania.expensesCounter.commons.dto.grouping.ExpenseError;
 import pl.kania.expensesCounter.commons.dto.grouping.ExpenseGroupingResult;
 import pl.kania.expensesCounter.commons.dto.grouping.GroupingResultPerExpenseCategory;
-import pl.kania.expensesCounter.grouping.purchase.card.CardPurchaseProcessor;
-import pl.kania.expensesCounter.grouping.search.ExpenseMappingsCardSearch;
+import pl.kania.expensesCounter.grouping.purchase.processor.CardPurchaseProcessor;
+import pl.kania.expensesCounter.grouping.purchase.processor.IncomingTransferPurchaseProcessor;
+import pl.kania.expensesCounter.grouping.purchase.processor.OutgoingTransferPurchaseProcessor;
+import pl.kania.expensesCounter.grouping.purchase.processor.WebMobileCodePurchaseProcessor;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,8 +24,17 @@ import static java.util.Collections.emptyMap;
 @AllArgsConstructor
 public class PurchaseProcessorFacade {
 
-    private final ExpenseMappingsCardSearch cardSearch = new ExpenseMappingsCardSearch();
-    private final CardPurchaseProcessor cardPurchaseProcessor = new CardPurchaseProcessor(cardSearch);
+    private final CardPurchaseProcessor cardPurchaseProcessor;
+    private final IncomingTransferPurchaseProcessor incomingTransferProcessor;
+    private final OutgoingTransferPurchaseProcessor outgoingTransferProcessor;
+    private final WebMobileCodePurchaseProcessor webMobileCodePurchaseProcessor;
+
+    public PurchaseProcessorFacade() {
+        this.cardPurchaseProcessor = new CardPurchaseProcessor();
+        this.incomingTransferProcessor = new IncomingTransferPurchaseProcessor();
+        this.outgoingTransferProcessor = new OutgoingTransferPurchaseProcessor();
+        this.webMobileCodePurchaseProcessor = new WebMobileCodePurchaseProcessor();
+    }
 
     public ExpenseGroupingResult groupExpensesByExpenseCategories(Map<TransactionType, List<ParsedExpense>> expensesPerTransactionType) {
         List<ExpenseGroupingResult> results = groupAllExpensesByExpenseTypes(expensesPerTransactionType);
@@ -44,8 +55,11 @@ public class PurchaseProcessorFacade {
                         case PURCHASE_CARD:
                             return cardPurchaseProcessor.process(expenses);
                         case INCOMING_TRANSFER:
+                            return incomingTransferProcessor.process(expenses);
                         case OUTGOING_TRANSFER:
+                            return outgoingTransferProcessor.process(expenses);
                         case PURCHASE_WEB_MOBILE_CODE:
+                            return webMobileCodePurchaseProcessor.process(expenses);
                         case WITHDRAWAL:
                         case OTHER:
                         default:
