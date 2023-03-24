@@ -16,6 +16,7 @@
         <module>Commons</module>
         <module>ExpenseMappingsCsvInserterLambda</module>
         <module>TransactionSaverLambda</module>
+        <module>ClientAppBackend</module>
     </modules>
     <properties>
         <maven.compiler.target>11</maven.compiler.target>
