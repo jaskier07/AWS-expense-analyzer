@@ -1,39 +1,39 @@
 package pl.kania.clientAppBackend.aws.token;
 
-import com.amazonaws.auth.BasicSessionCredentials;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
-import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClientBuilder;
-import com.amazonaws.services.securitytoken.model.AssumeRoleRequest;
-import com.amazonaws.services.securitytoken.model.AssumeRoleResult;
 import io.vavr.control.Try;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.sts.StsClient;
+import software.amazon.awssdk.services.sts.model.AssumeRoleRequest;
+import software.amazon.awssdk.services.sts.model.AssumeRoleResponse;
 
 @Service
 class AwsSessionTokenAuthorizer {
 
     private static final int ONE_HOUR_IN_SECONDS = 3600;
-    private final AWSSecurityTokenService stsClient;
+    private final StsClient stsClient;
 
     AwsSessionTokenAuthorizer(@Value("${aws.region}") String region) {
-        stsClient = AWSSecurityTokenServiceClientBuilder.standard()
-                .withCredentials(new ProfileCredentialsProvider())
-                .withRegion(region)
+        stsClient = StsClient.builder()
+                .credentialsProvider(ProfileCredentialsProvider.create())
+                .region(Region.of(region))
                 .build();
     }
 
-    BasicSessionCredentials getCredentialsForRole(String roleSessionName, String roleArn) {
-        return Try.of(() -> new AssumeRoleRequest()
-                        .withRoleArn(roleArn)
-                        .withRoleSessionName(roleSessionName)
-                        .withDurationSeconds(1 * ONE_HOUR_IN_SECONDS))
+    AwsBasicCredentials getCredentialsForRole(String roleSessionName, String roleArn) {
+        return Try.of(() -> AssumeRoleRequest.builder()
+                        .roleArn(roleArn)
+                        .roleSessionName(roleSessionName)
+                        .durationSeconds(1 * ONE_HOUR_IN_SECONDS)
+                        .build())
                 .map(stsClient::assumeRole)
-                .map(AssumeRoleResult::getCredentials)
-                .map(sessionCredentials -> new BasicSessionCredentials(
-                        sessionCredentials.getAccessKeyId(),
-                        sessionCredentials.getSecretAccessKey(),
-                        sessionCredentials.getSessionToken()))
+                .map(AssumeRoleResponse::credentials)
+                .map(sessionCredentials -> AwsBasicCredentials.create(
+                        sessionCredentials.accessKeyId(),
+                        sessionCredentials.secretAccessKey()))
                 .getOrElseThrow(e -> new IllegalStateException("Error assuming role " + roleSessionName, e));
     }
 }

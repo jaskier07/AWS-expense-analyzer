@@ -1,11 +1,11 @@
 package pl.kania.clientAppBackend.aws.token;
 
-import com.amazonaws.auth.BasicSessionCredentials;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import io.vavr.control.Try;
 import org.springframework.stereotype.Service;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class AwsSessionTokenProvider {
 
     private final AwsSessionTokenAuthorizer sessionTokenAuthorizer;
-    private final LoadingCache<AwsRole, BasicSessionCredentials> cache;
+    private final LoadingCache<AwsRole, AwsBasicCredentials> cache;
     private final RoleProperties roleProperties;
 
     public AwsSessionTokenProvider(AwsSessionTokenAuthorizer sessionTokenAuthorizer, RoleProperties roleProperties) {
@@ -25,15 +25,15 @@ public class AwsSessionTokenProvider {
                 .build(getCacheLoader());
     }
 
-    public BasicSessionCredentials getCredentials() {
+    public AwsBasicCredentials getCredentials() {
         return Try.of(() -> cache.get(roleProperties.getRole()))
                 .getOrElseThrow(e -> new IllegalStateException("Cannot get role from cache", e));
     }
 
-    private CacheLoader<AwsRole, BasicSessionCredentials> getCacheLoader() {
+    private CacheLoader<AwsRole, AwsBasicCredentials> getCacheLoader() {
         return new CacheLoader<>() {
             @Override
-            public BasicSessionCredentials load(AwsRole role) throws Exception {
+            public AwsBasicCredentials load(AwsRole role) throws Exception {
                 return sessionTokenAuthorizer.getCredentialsForRole(role.getName(), role.getArn());
             }
         };
