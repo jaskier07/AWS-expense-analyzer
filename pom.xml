@@ -9,18 +9,19 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>ContentExtractorLambda</module>
-        <module>CsvS3DownloaderLambda</module>
+        <module>TransactionToExpenseMapperLambda</module>
+        <module>PdfS3DownloaderLambda</module>
         <module>OrchestratorLambda</module>
         <module>ExpensesGroupingLambda</module>
         <module>Commons</module>
         <module>ExpenseMappingsCsvInserterLambda</module>
         <module>TransactionSaverLambda</module>
         <module>ClientAppBackend</module>
+        <module>AccountStatementParserLambda</module>
     </modules>
     <properties>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
     </properties>
 
     <dependencies>
@@ -53,7 +54,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.13.0</version>
+            <version>2.13.4.1</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
@@ -64,6 +65,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.3</version>
         </dependency>
         <dependency>
             <groupId>org.apache.groovy</groupId>

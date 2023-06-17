@@ -27,14 +27,14 @@
 hs_err_pid*
 
 # files
-ContentExtractorLambda/src/test/resources/pdfs/*
-ContentExtractorLambda/src/main/resources/pdfs/*
-ContentExtractorLambda/src/main/resources/csv/*
+AccountStatementParserLambda/src/test/resources/pdfs/*
+AccountStatementParserLambda/src/main/resources/pdfs/*
+AccountStatementParserLambda/src/main/resources/csv/*
 ignored/*
 
 # target
 Commons/target/*
-ContentExtractorLambda/target/*
+AccountStatementParserLambda/target/*
 CsvS3DownloaderLambda/target/*
 ExpenseMappingsCsvInserterLambda/target/*
 ExpensesGroupingLambda/target/*
