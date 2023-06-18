@@ -40,3 +40,4 @@ ExpenseMappingsCsvInserterLambda/target/*
 ExpensesGroupingLambda/target/*
 OrchestratorLambda/target/*
 TransactionSaverLambda/target/*
+/AccountStatementParserLambda/src/main/resources/bankStatements/*

@@ -53,11 +53,11 @@ public class TransactionDao {
 
     private Map<String, AttributeValue> mapTransactionToParameterMap(Transaction transaction) {
         Map<String, AttributeValue> parameterMap = new HashMap<>();
-        parameterMap.put("id", new AttributeValue(transaction.getOperationId()));
+        parameterMap.put("id", new AttributeValue(transaction.getId()));
         parameterMap.put("transaction_type", new AttributeValue(transaction.getType().name()));
         parameterMap.put("amount", new AttributeValue(transaction.getAmount().toString()));
         parameterMap.put("description", new AttributeValue(transaction.getDescription()));
-        parameterMap.put("date", new AttributeValue(formatter.format(transaction.getDate())));
+        parameterMap.put("date", new AttributeValue(formatter.format(transaction.getOperationDate())));
         return parameterMap;
     }
 }

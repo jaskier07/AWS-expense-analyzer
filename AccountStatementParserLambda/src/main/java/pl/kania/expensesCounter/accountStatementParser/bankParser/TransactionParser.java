@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TransactionParser {
 
-    List<Transaction> parseTransactions(String accountStatements);
+    List<Transaction> parseTransactions(String accountStatements) throws Exception;
 }

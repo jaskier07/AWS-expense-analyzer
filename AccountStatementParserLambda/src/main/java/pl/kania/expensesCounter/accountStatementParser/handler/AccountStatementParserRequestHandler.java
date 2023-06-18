@@ -9,9 +9,11 @@ import org.apache.commons.collections4.MapUtils;
 import pl.kania.expensesCounter.accountStatementParser.bankParser.TransactionParser;
 import pl.kania.expensesCounter.accountStatementParser.bankParser.TransactionParserFactory;
 import pl.kania.expensesCounter.commons.dto.BankType;
+import pl.kania.expensesCounter.commons.dto.db.Transaction;
 import pl.kania.expensesCounter.commons.util.Base64RequestReader;
 import pl.kania.expensesCounter.commons.util.RequestHelper;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -32,15 +34,19 @@ public class AccountStatementParserRequestHandler implements RequestHandler<Map<
 
         String accountStatementBase64Encoded = inputParameters.get(ACCOUNT_STATEMENT_PARAMETER);
         BankType bankType = BankType.valueOf(inputParameters.get(BANK_TYPE_PARAMETER));
-        TransactionParser parser = transactionParserFactory.get(bankType);
 
         return Try.of(() -> accountStatementBase64Encoded)
                 .map(requestReader::readStringBase64Encoded)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .map(parser::parseTransactions)
+                .mapTry(accountStatement -> parseTransactions(accountStatement, bankType))
                 .mapTry(requestHelper::writeObjectAsBase64)
                 .onFailure(e -> log.error("Problem parsing account statement", e))
                 .getOrElseThrow(() -> new IllegalStateException("Problem parsing account statement"));
+    }
+
+    private List<Transaction> parseTransactions(String accountStatement, BankType bankType) throws Exception {
+        TransactionParser parser = transactionParserFactory.get(bankType);
+        return parser.parseTransactions(accountStatement);
     }
 }

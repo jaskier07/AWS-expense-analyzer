@@ -27,8 +27,8 @@ public class TransactionValidator {
 
     public Optional<String> validateAndReturnErrors(Transaction transaction) {
         Map<String, Boolean> validations = new HashMap<>();
-        validations.put("Nullable id", VALIDATE_NOT_EMPTY.test(transaction.getOperationId()));
-        validations.put("Nullable date", VALIDATE_NOT_NULL.test(transaction.getDate()));
+        validations.put("Nullable id", VALIDATE_NOT_EMPTY.test(transaction.getId()));
+        validations.put("Nullable date", VALIDATE_NOT_NULL.test(transaction.getOperationDate()));
         validations.put("Nullable type", VALIDATE_NOT_NULL.test(transaction.getType()));
         validations.put("Nullable amount", VALIDATE_NOT_NULL.test(transaction.getAmount()));
         validations.put("Nullable description", VALIDATE_NOT_EMPTY.test(transaction.getDescription()));
@@ -39,7 +39,7 @@ public class TransactionValidator {
                 .map(Map.Entry::getKey)
                 .collect(Collectors.joining("."));
 
-        String errorMessage = "Transaction " + transaction.getOperationId() + ": " + errors;
+        String errorMessage = "Transaction " + transaction.getId() + ": " + errors;
         return !errors.isEmpty() ? Optional.of(errorMessage) : Optional.empty();
     }
 }
