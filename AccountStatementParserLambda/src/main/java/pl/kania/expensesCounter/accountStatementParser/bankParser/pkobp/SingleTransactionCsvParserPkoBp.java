@@ -22,7 +22,7 @@ public class SingleTransactionCsvParserPkoBp implements SingleTransactionCsvPars
 
     @Override
     public Transaction extract(CSVRecord record) {
-        log.info("Extracting record: " + record);
+        log.info("Extracting PKOBP record: " + record);
 
         String transactionTypeString = record.get("Typ transakcji");
         TransactionType transactionType = AccountStatementTransactionType.from(transactionTypeString, PKO_BP).getTransactionType();
@@ -41,19 +41,8 @@ public class SingleTransactionCsvParserPkoBp implements SingleTransactionCsvPars
                 .build();
     }
 
-    private Double getDouble(CSVRecord record, String header) {
-        return parseCsvRecord(record, header, Double::parseDouble);
-    }
-
-    private LocalDate getDate(CSVRecord record, String header) {
-        return parseCsvRecord(record, header, date -> LocalDate.parse(date, DATE_FORMATTER));
-    }
-
-    private <T>T parseCsvRecord(CSVRecord record, String header, Function<String, T> mapper) {
-        return Try.of(() -> record)
-                .map(r -> r.get(header))
-                .filter(Objects::nonNull)
-                .map(mapper)
-                .getOrNull();
+    @Override
+    public DateTimeFormatter getDateTimeFormatter() {
+        return DATE_FORMATTER;
     }
 }

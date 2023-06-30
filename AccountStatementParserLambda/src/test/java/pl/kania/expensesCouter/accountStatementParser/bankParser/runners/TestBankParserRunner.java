@@ -18,8 +18,8 @@ public class TestBankParserRunner {
 
     public static void main(String[] args) throws Exception {
         // input
-        BankType bankType = BankType.PKO_BP;
-        String path = "C:\\Users\\alexp\\Development\\AWS-expense-analyzer\\AccountStatementParserLambda\\src\\main\\resources\\bankStatements\\pkobp.csv";
+        BankType bankType = BankType.BNP_PARIBAS;
+        String path = "C:\\Users\\alexp\\Development\\AWS-expense-analyzer\\AccountStatementParserLambda\\src\\main\\resources\\bankStatements\\bnp.csv";
 
         // run
         Path pathToFile = Paths.get(path);

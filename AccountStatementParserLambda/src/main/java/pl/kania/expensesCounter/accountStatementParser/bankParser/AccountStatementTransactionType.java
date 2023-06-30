@@ -14,19 +14,19 @@ public enum AccountStatementTransactionType {
     INCOMING_TRANSFER(
             new String[]{"Przelew na rachunek", "Przelew na telefon przychodz. zew.", "Zwrot w terminalu", "Zwrot płatności kartą", "Przelew Natychmiastowy na rachunek"},
             new String[]{"Przelew przychodzący zewnętrzny"},
-            new String[]{},
+            new String[]{"Przelew przychodzący"},
             TransactionType.INCOMING_TRANSFER
     ),
     OUTGOING_TRANSFER(
             new String[]{"Przelew z rachunku", "Przelew na telefon wychodzący zew.", "Przelew na telefon wychodzący wew.", "Zlecenie stałe", "Przelew z karty", "Przelew natychmiastowy"},
             new String[]{"Przelew wychodzący zewnętrzny"},
-            new String[]{},
+            new String[]{"Przelew wychodzący"},
             TransactionType.OUTGOING_TRANSFER
     ),
     PURCHASE_CARD(
             new String[]{"Płatność kartą", "Obciążenie"},
             new String[]{}, // no card
-            new String[]{},
+            new String[]{"Transakcja kartą"},
             TransactionType.PURCHASE_CARD
     ),
     PURCHASE_WEB_MOBILE_CODE(
@@ -44,13 +44,13 @@ public enum AccountStatementTransactionType {
     BANK_PAYMENTS(
             new String[]{"Spłata kredytu", "Opłata", "Prowizja"},
             new String[]{"Pobranie opłaty"},
-            new String[]{},
+            new String[]{"Operacja kredytowa", "Odsetki"},
             TransactionType.OUTGOING_TRANSFER
     ),
     OTHER(
             new String[]{"Przelew Paybynet"},
             new String[]{"Naliczenie odsetek"},
-            new String[]{},
+            new String[]{"Prowizje i opłaty"},
             TransactionType.OTHER
     );
 
