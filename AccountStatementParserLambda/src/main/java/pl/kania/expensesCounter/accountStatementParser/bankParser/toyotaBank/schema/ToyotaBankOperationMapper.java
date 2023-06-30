@@ -9,19 +9,19 @@ import static pl.kania.expensesCounter.commons.dto.BankType.TOYOTA_BANK;
 public class ToyotaBankOperationMapper {
 
     public Transaction mapOperationToTransaction(ToyotaBankOperation toyotaOperation) {
-        TransactionType type = AccountStatementTransactionType.from(toyotaOperation.type(), TOYOTA_BANK).getTransactionType();
+        TransactionType type = AccountStatementTransactionType.from(toyotaOperation.getType(), TOYOTA_BANK).getTransactionType();
 
         return Transaction.builder()
-                .id(toyotaOperation.id())
+                .id(toyotaOperation.getId())
                 .type(type)
                 .affectedBankType(TOYOTA_BANK)
-                .destAccountNumber(toyotaOperation.destAccountNumber())
-                .sourceAccountNumber(toyotaOperation.sourceAccountNumber())
-                .operationDate(toyotaOperation.operationDate())
-                .currencyDate(toyotaOperation.currencyDate())
-                .amount(toyotaOperation.amount())
-                .description(toyotaOperation.description())
-                .contractor(toyotaOperation.contractor())
+                .destAccountNumber(toyotaOperation.getDestAccountNumber())
+                .sourceAccountNumber(toyotaOperation.getSourceAccountNumber())
+                .operationDate(toyotaOperation.getOperationDate())
+                .currencyDate(toyotaOperation.getCurrencyDate())
+                .amount(toyotaOperation.getAmount())
+                .description(toyotaOperation.getDescription())
+                .contractor(toyotaOperation.getContractor())
                 .expenseId(null) // will be determined in different place
                 .build();
     }

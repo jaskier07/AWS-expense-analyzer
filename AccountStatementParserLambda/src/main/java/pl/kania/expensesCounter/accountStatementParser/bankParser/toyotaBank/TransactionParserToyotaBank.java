@@ -1,7 +1,9 @@
 package pl.kania.expensesCounter.accountStatementParser.bankParser.toyotaBank;
 
+import io.vavr.Predicates;
 import io.vavr.control.Try;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import pl.kania.expensesCounter.accountStatementParser.bankParser.AccountStatementTransactionType;
 import pl.kania.expensesCounter.accountStatementParser.bankParser.TransactionParser;
 import pl.kania.expensesCounter.accountStatementParser.bankParser.toyotaBank.schema.ToyotaBankOperationMapper;
@@ -15,6 +17,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.util.List;
+import java.util.Objects;
 
 import static pl.kania.expensesCounter.commons.dto.BankType.TOYOTA_BANK;
 
@@ -32,10 +35,12 @@ public class TransactionParserToyotaBank implements TransactionParser {
     @Override
     public List<Transaction> parseTransactions(String accountStatements) {
         return Try.of(() -> accountStatements)
+                .filter(StringUtils::isNotBlank)
                 .map(StringReader::new)
                 .mapTry(reader -> (ToyotaBankOperations) unmarshaller.unmarshal(reader))
+                .filter(operations -> Objects.nonNull(operations) && Objects.nonNull(operations.getOperations()))
                 .map(toyotaOperations -> toyotaOperations
-                        .operations().stream()
+                        .getOperations().stream()
                         .map(operationMapper::mapOperationToTransaction)
                         .toList()
                 )
