@@ -1,0 +1,393 @@
+<mxfile host="app.diagrams.net" modified="2023-07-14T09:13:23.839Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.79" etag="LvBOF5wqKn-fcda6hnHD" version="21.6.2" type="device">
+  <diagram name="Page-1" id="quQH6Hb_5Zm7HVO7tF3G">
+    <mxGraphModel dx="2756" dy="2323" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-9" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="154.5" y="754" width="120" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-1" value="AccountStatementParserLambda" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.lambda_function;fillColor=#F58534;gradientColor=none;" parent="UYQktM_xRdFUHkhzaOKc-9" vertex="1">
+          <mxGeometry x="25.5" y="60" width="69" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-3" value="IN: bank statement, bank type&amp;nbsp;&lt;br&gt;OUT: List&amp;lt;Transaction&amp;gt;, without IDs" style="rounded=1;whiteSpace=wrap;html=1;" parent="UYQktM_xRdFUHkhzaOKc-9" vertex="1">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-10" value="TRANSACTION" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.dynamo_db;fillColor=#2E73B8;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="520" y="1344.5" width="72" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-15" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="-900" y="710" width="190" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-14" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="UYQktM_xRdFUHkhzaOKc-15" vertex="1">
+          <mxGeometry width="190" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-4" value="bank statement PKO, CSV" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="UYQktM_xRdFUHkhzaOKc-15" vertex="1">
+          <mxGeometry x="16" y="10" width="160.5" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-11" value="bank statement Toyota, XML" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="UYQktM_xRdFUHkhzaOKc-15" vertex="1">
+          <mxGeometry x="16" y="100" width="160.5" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-12" value="bank statement BNP, XLSX" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="UYQktM_xRdFUHkhzaOKc-15" vertex="1">
+          <mxGeometry x="16" y="190" width="160.5" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="UYQktM_xRdFUHkhzaOKc-14" target="UYQktM_xRdFUHkhzaOKc-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-1" value="parses data from bank statement and makes them aligned with format of Transaction" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
+          <mxGeometry x="290" y="745" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-2" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="144.5" y="305" width="120" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-3" value="PdfS3DownloaderLambda" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.lambda_function;fillColor=#F58534;gradientColor=none;" parent="sRVr4etiKDn_KccDH6qw-2" vertex="1">
+          <mxGeometry x="25.5" y="60" width="69" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-4" value="IN: path to file in S3&lt;br&gt;OUT: file encoded base64" style="rounded=1;whiteSpace=wrap;html=1;" parent="sRVr4etiKDn_KccDH6qw-2" vertex="1">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-5" value="AWS S3" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#60A337;gradientDirection=north;fillColor=#277116;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.s3;" parent="1" vertex="1">
+          <mxGeometry x="494" y="362" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="sRVr4etiKDn_KccDH6qw-3" target="sRVr4etiKDn_KccDH6qw-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-7" value="read file" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="sRVr4etiKDn_KccDH6qw-6" vertex="1" connectable="0">
+          <mxGeometry x="-0.1529" y="-2" relative="1" as="geometry">
+            <mxPoint x="13" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-8" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="164.5" y="1289" width="120" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-9" value="TransactionSaverLambda" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.lambda_function;fillColor=#F58534;gradientColor=none;" parent="sRVr4etiKDn_KccDH6qw-8" vertex="1">
+          <mxGeometry x="25.5" y="60" width="69" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-10" value="IN: List&amp;lt;Transaction&amp;gt;&lt;br&gt;OUT: file encoded base64 List&amp;lt;Transaction&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="sRVr4etiKDn_KccDH6qw-8" vertex="1">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="sRVr4etiKDn_KccDH6qw-9" target="UYQktM_xRdFUHkhzaOKc-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-12" value="save transactions" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="sRVr4etiKDn_KccDH6qw-11" vertex="1" connectable="0">
+          <mxGeometry x="-0.1073" y="-1" relative="1" as="geometry">
+            <mxPoint x="7" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-13" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="459" y="1153.5" width="120" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-14" value="TransactionToExpenseMapperLambda" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.lambda_function;fillColor=#F58534;gradientColor=none;" parent="sRVr4etiKDn_KccDH6qw-13" vertex="1">
+          <mxGeometry x="25.5" y="60" width="69" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-15" value="IN: List&amp;lt;Transaction&amp;gt;&lt;br&gt;OUT: List&amp;lt;ExpenseMappings&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="sRVr4etiKDn_KccDH6qw-13" vertex="1">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-16" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="154.5" y="1514.5" width="120" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-17" value="ExpenseMappingsCsvInserterLambda" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.lambda_function;fillColor=#F58534;gradientColor=none;" parent="sRVr4etiKDn_KccDH6qw-16" vertex="1">
+          <mxGeometry x="25.5" y="60" width="69" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-18" value="IN: List&amp;lt;ExpenseMappings&amp;gt;&lt;br&gt;OUT: number of saved rows" style="rounded=1;whiteSpace=wrap;html=1;" parent="sRVr4etiKDn_KccDH6qw-16" vertex="1">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-19" value="EXPENSE_MAPPING" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.dynamo_db;fillColor=#2E73B8;gradientColor=none;" parent="1" vertex="1">
+          <mxGeometry x="507" y="1565.5" width="72" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="sRVr4etiKDn_KccDH6qw-17" target="sRVr4etiKDn_KccDH6qw-19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-21" value="save expense mappings" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="sRVr4etiKDn_KccDH6qw-20" vertex="1" connectable="0">
+          <mxGeometry x="-0.12" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-22" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="-280" y="290" width="140" height="152" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-23" value="OrchestratorLambda" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.lambda_function;fillColor=#F58534;gradientColor=none;" parent="sRVr4etiKDn_KccDH6qw-22" vertex="1">
+          <mxGeometry x="29.749999999999996" y="69.09090909090908" width="80.5" height="82.9090909090909" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-24" value="IN: path to filename in S3&lt;br&gt;OUT:&amp;nbsp;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;GroupingResultPer&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;ExpenseCategory&lt;/span&gt;&amp;nbsp;and errors" style="rounded=1;whiteSpace=wrap;html=1;" parent="sRVr4etiKDn_KccDH6qw-22" vertex="1">
+          <mxGeometry width="140" height="69.09090909090908" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-26" value="&lt;b&gt;EXPENSE_MAPPING &lt;/b&gt;(db)&lt;br&gt;name: bolt.eu&lt;br&gt;mappingType: keyword&lt;br&gt;category: transport&lt;br&gt;subcategory: private&lt;br&gt;logicalName: bolt" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="780" y="141" width="200" height="149" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-27" value="&lt;b&gt;SingleExpense &lt;/b&gt;(dto)&lt;br&gt;amount&lt;br&gt;expenseMapping" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="141" width="200" height="149" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-28" value="&lt;b&gt;GroupingResultPer&lt;br&gt;ExpenseCategory&lt;/b&gt;&amp;nbsp;(dto)&lt;br&gt;category&lt;br&gt;List&amp;lt;SingleExpense&amp;gt;&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1220" y="141" width="200" height="149" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-31" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="-550" y="755" width="160" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-6" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/612/aiga_information_bg-128.png" parent="sRVr4etiKDn_KccDH6qw-31" vertex="1">
+          <mxGeometry x="20" y="60" width="69" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="UYQktM_xRdFUHkhzaOKc-17" value="sth orchestrates the flow" style="rounded=1;whiteSpace=wrap;html=1;" parent="sRVr4etiKDn_KccDH6qw-31" vertex="1">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-33" value="&lt;b&gt;FOR NOW SIMPLE PYTHON SCRIPT?&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="sRVr4etiKDn_KccDH6qw-31">
+          <mxGeometry x="40" y="-45" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-32" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="-560" y="307" width="120" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-33" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/612/aiga_information_bg-128.png" parent="sRVr4etiKDn_KccDH6qw-32" vertex="1">
+          <mxGeometry x="20" y="60" width="69" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-34" value="sth calls lambda with filename" style="rounded=1;whiteSpace=wrap;html=1;" parent="sRVr4etiKDn_KccDH6qw-32" vertex="1">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="sRVr4etiKDn_KccDH6qw-33" target="sRVr4etiKDn_KccDH6qw-23" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.991;exitY=0.366;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="sRVr4etiKDn_KccDH6qw-23" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="389" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="170" y="389" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-39" value="1. get file" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="sRVr4etiKDn_KccDH6qw-36" vertex="1" connectable="0">
+          <mxGeometry x="0.0185" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-42" value="&lt;b&gt;TRANSACTION&amp;nbsp;&lt;/b&gt;(db)&lt;br&gt;id: abc123&lt;br&gt;amount: 21,37&lt;br&gt;date: 23-05-2023&lt;br&gt;description: bolt payment bolt.eu&lt;br&gt;type: purchase_card&lt;br&gt;source_bank: pko&lt;br&gt;source_account_number: 05 ...&lt;br&gt;dest_bank: toyota&lt;br&gt;dest_account_number: 03 ...&lt;br&gt;creation_date: 23-06-2023&lt;br&gt;expense: ID from E_M&lt;br&gt;comment: grill pruszcz" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="780" y="310" width="200" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-43" value="&lt;b&gt;ACCOUNT&amp;nbsp;&lt;/b&gt;(db)&lt;br&gt;id: GUID&lt;br&gt;number: 03 ...&lt;br&gt;bank: PKO" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="780" y="-30" width="200" height="149" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-44" value="&lt;b&gt;EXPENSE_MAPPING_PROPOSAL&lt;br&gt;&lt;/b&gt;(db)&lt;br&gt;id: GUID&lt;br&gt;name: &amp;lt;description&amp;gt;&lt;br&gt;context: sth that will help with decision" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="780" y="540" width="200" height="149" as="geometry" />
+        </mxCell>
+        <mxCell id="sRVr4etiKDn_KccDH6qw-45" value="IMMEDIATE STATEMENT ANALYSIS" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="-1350" y="826" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-1" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="154.5" y="950" width="120" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-2" value="ExpenseGroupingLambda" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.lambda_function;fillColor=#F58534;gradientColor=none;" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-1">
+          <mxGeometry x="25.5" y="60" width="69" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-3" value="IN: List&amp;lt;ParsedExpense&amp;gt;&lt;br&gt;OUT:&amp;nbsp;&lt;br&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;ExpenseGroupingResult&amp;nbsp;&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-1">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-6" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="-260" y="755" width="190" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-7" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/612/aiga_information_bg-128.png" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-6">
+          <mxGeometry x="20" y="60" width="69" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-8" value="sth uploads file to AWS" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-6">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-28" value="&lt;b&gt;API GATEWAY?&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-6">
+          <mxGeometry x="70" y="-65" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XGDkbfYJF_c1FuWXdL4H-7" target="UYQktM_xRdFUHkhzaOKc-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-12" value="get transactions from file" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-11">
+          <mxGeometry x="-0.1181" relative="1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-13" value="&lt;b&gt;TODO&lt;/b&gt;: transactions as input" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="274.5" y="950" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="UYQktM_xRdFUHkhzaOKc-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-470" y="886" as="sourcePoint" />
+            <mxPoint x="180" y="1048" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-470" y="1048" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-18" value="2. group transactions" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-14">
+          <mxGeometry x="-0.9207" y="-1" relative="1" as="geometry">
+            <mxPoint x="51" y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="UYQktM_xRdFUHkhzaOKc-6" target="XGDkbfYJF_c1FuWXdL4H-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-17" value="1.send files to aws" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-16">
+          <mxGeometry x="-0.1946" y="-1" relative="1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-19" value="&lt;b&gt;ExpenseGroupingResult &lt;/b&gt;(dto)&lt;br&gt;Map&amp;lt;String, GRPEC&amp;gt; groupings&lt;br&gt;List&amp;lt;ExpenseError&amp;gt; errors" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1440" y="141" width="200" height="149" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="XGDkbfYJF_c1FuWXdL4H-20" target="UYQktM_xRdFUHkhzaOKc-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-25" value="uploads bank statement" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-22">
+          <mxGeometry x="-0.2909" y="-2" relative="1" as="geometry">
+            <mxPoint x="32" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-20" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-1150" y="820" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.145;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="UYQktM_xRdFUHkhzaOKc-6" target="XGDkbfYJF_c1FuWXdL4H-20">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-520" y="1050" />
+              <mxPoint x="-1135" y="1050" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-27" value="3. present &lt;br&gt;results" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-26">
+          <mxGeometry x="-0.9411" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-35" value="SAVE TRANSACTION FOR LATER READ" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="-1350" y="1206" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="XGDkbfYJF_c1FuWXdL4H-37" target="XGDkbfYJF_c1FuWXdL4H-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-45" value="uploads bank statement" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-44">
+          <mxGeometry x="-0.4196" y="3" relative="1" as="geometry">
+            <mxPoint x="46" y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-37" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-1150" y="1206" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XGDkbfYJF_c1FuWXdL4H-43" target="XGDkbfYJF_c1FuWXdL4H-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-43" value="bank statement (PKO, Toyota, BNP)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-865" y="1206" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-46" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="-550" y="1140" width="160" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-47" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/612/aiga_information_bg-128.png" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-46">
+          <mxGeometry x="20" y="61" width="69" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-48" value="sth orchestrates the flow" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-46">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-49" value="&lt;b&gt;FOR NOW SIMPLE PYTHON SCRIPT?&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-46">
+          <mxGeometry x="40" y="-45" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="XGDkbfYJF_c1FuWXdL4H-76" target="XGDkbfYJF_c1FuWXdL4H-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XGDkbfYJF_c1FuWXdL4H-47" target="XGDkbfYJF_c1FuWXdL4H-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-80" y="1236" />
+              <mxPoint x="-80" y="1060" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-54" value="2. group transactions" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-53">
+          <mxGeometry x="-0.7967" y="3" relative="1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XGDkbfYJF_c1FuWXdL4H-47" target="sRVr4etiKDn_KccDH6qw-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-220" y="1250" />
+              <mxPoint x="-220" y="1250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-62" value="3. map transactions to expense mappings" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-61">
+          <mxGeometry x="-0.4665" y="-1" relative="1" as="geometry">
+            <mxPoint x="-121" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XGDkbfYJF_c1FuWXdL4H-47" target="sRVr4etiKDn_KccDH6qw-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-470" y="1385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-65" value="4. save transactions in db" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-64">
+          <mxGeometry x="-0.4658" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-66" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="-60" y="1140" width="170" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-67" value="sth calls lambda" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-66">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-68" value="&lt;b&gt;API GATEWAY?&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-66">
+          <mxGeometry x="60" y="-40" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-69" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/612/aiga_information_bg-128.png" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-66">
+          <mxGeometry x="20" y="60" width="69" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-57" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="-60" y="1304.5" width="170" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-58" value="sth calls lambda" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-57">
+          <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-59" value="&lt;b&gt;API GATEWAY?&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-57">
+          <mxGeometry x="60" y="-40" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-60" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/612/aiga_information_bg-128.png" vertex="1" parent="XGDkbfYJF_c1FuWXdL4H-57">
+          <mxGeometry x="20" y="60" width="69" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="sRVr4etiKDn_KccDH6qw-14" target="sRVr4etiKDn_KccDH6qw-19">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="1250" />
+              <mxPoint x="770" y="1606" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-71" value="get existing&lt;br&gt;expense mappings" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-70">
+          <mxGeometry x="-0.4797" y="2" relative="1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-72" value="&lt;b&gt;TODO&lt;/b&gt;: handling errors" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-560" y="1514.5" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-73" value="&lt;b&gt;TODO&lt;/b&gt;: store somewhere unknown mappings" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="530" y="1089" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-74" value="&lt;b&gt;TODO&lt;/b&gt;: implement" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1153.5" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-75" value="&lt;b&gt;AUTHENTICATION IN API GATEWAY&lt;/b&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="-130" y="640" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-77" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="XGDkbfYJF_c1FuWXdL4H-47" target="XGDkbfYJF_c1FuWXdL4H-76">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-461" y="1218" as="sourcePoint" />
+            <mxPoint x="-240" y="867" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-78" value="1. send files to AWS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XGDkbfYJF_c1FuWXdL4H-77">
+          <mxGeometry x="-0.3047" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XGDkbfYJF_c1FuWXdL4H-76" value="/transactions/parser" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;gradientColor=#945DF2;gradientDirection=north;fillColor=#5A30B5;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
+          <mxGeometry x="-390" y="941" width="78" height="78" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
