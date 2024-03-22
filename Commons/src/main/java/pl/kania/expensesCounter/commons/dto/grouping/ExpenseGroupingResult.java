@@ -11,6 +11,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 public class ExpenseGroupingResult {
+    // <category, groupingResult>
     Map<String, GroupingResultPerExpenseCategory> groupings;
     List<ExpenseError> errors;
 }

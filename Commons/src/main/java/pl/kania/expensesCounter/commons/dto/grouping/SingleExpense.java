@@ -14,6 +14,6 @@ public class SingleExpense {
 
     public SingleExpense(ExpenseMapping mapping) {
         this.mapping = mapping;
-        this.amount = Double.parseDouble(mapping.getExpenseCategory());
+        this.amount = Double.parseDouble(mapping.getExpenseCategory()); // FIXME doesn't make sense
     }
 }
